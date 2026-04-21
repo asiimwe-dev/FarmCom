@@ -66,6 +66,19 @@ This platform is designed for day-one commercial viability:
 
 ---
 
+## The Future: Where FarmCom is Heading
+
+FarmCom is starting as a community, but it is built to become the central operating system for the country's agriculture. 
+
+* **Phase 2: The Direct Union Marketplace**
+  Once we have organized farmers into niche communities, we will open the platform to bulk buyers and factories. Buyers can negotiate directly with a community of verified farmers, cutting out middlemen and ensuring farmers get fair market prices for their produce.
+* **Phase 3: Unlocking Investments & Loans**
+  By using FarmCom regularly, farmers build a digital track record of their farm's health and activity. This data acts as a "credit score," allowing banks, NGOs, and private investors to safely offer micro-loans and crop insurance to farmers who were previously unbankable.
+* **Phase 4: The National Agricultural Dashboard**
+  With thousands of farmers reporting crop health and yields on a single platform, FarmCom will create a real-time standard showing exactly how the country's agriculture is performing. This will allow government agencies to predict food shortages, track disease outbreaks, and plan better.
+
+---
+
 ##  Getting Started (Local Development)
 
 ### Prerequisites
