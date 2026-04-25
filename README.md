@@ -90,24 +90,29 @@ FarmCom is starting as a community, but it is built to become the central operat
 
 1. **Clone the repository**
    ```bash
-   git clone [https://github.com/asiimwe-dev/FarmCom.git](https://github.com/asiimwe-dev/FarmCom.git)
+   git clone https://github.com/asiimwe-dev/FarmCom.git
    cd FarmCom
+   ```
 
 2. **Install Dependencies**
    ```bash
+   cd frontend
    flutter pub get
+   ```
 
 3. **Configure Environment Variables**
-   *Create a .env file in the root directory:*
+   *Create a .env file in the frontend directory:*
    ```bash
    SUPABASE_URL=your_supabase_url
    SUPABASE_ANON_KEY=your_anon_key
    FLUTTERWAVE_PUBLIC_KEY=your_fw_key
+   ```
 
 4. **Run the application:**
    ```bash
+   cd frontend
    flutter run
-
+   ```
 ---
 
 ## Security & Data Integrity

@@ -6,6 +6,7 @@
 *.swp
 .buildlog/
 .history
+.vscode
 
 
 
@@ -117,3 +118,45 @@ app.*.symbols
 !**/ios/**/default.perspectivev3
 !/packages/flutter_tools/test/data/dart_dependencies_test/**/.packages
 !/dev/ci/**/Gemfile.lock
+
+# ===== FARMCOM FRONTEND SPECIFIC =====
+
+# Environment & Secrets
+.env
+.env.local
+.env.*.local
+credentials.json
+google-services.json
+GoogleService-Info.plist
+firebase-debug.log
+
+# Generated Isar schemas (if re-enabled)
+lib/core/infrastructure/storage/schemas/*.g.dart
+lib/**/*.freezed.dart
+lib/**/*.config.dart
+
+# APK & Build artifacts (except important docs)
+**/*.apk
+**/*.aar
+
+# Coverage & Test reports
+coverage/
+test_results/
+lcov.info
+
+# Temporary & Workspace files
+*.code-workspace
+.vscode/settings.local.json
+pubspec_overrides.yaml
+**/*.tmp
+**/*.swp
+**/*.swo
+
+# Platform generated files
+linux/flutter/generated_plugins.cmake
+windows/flutter/generated_plugins.cmake
+macos/Flutter/generated_plugins.cmake
+
+# Logs
+flutter_build.log
+*.diagnostic
