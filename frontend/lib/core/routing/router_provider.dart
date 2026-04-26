@@ -4,10 +4,10 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../routing/app_routes.dart';
 import '../routing/main_shell.dart';
 import '../../features/auth/presentation/pages/otp_page.dart';
-import '../../features/auth/presentation/pages/profile_page.dart';
 import '../../features/auth/presentation/providers/auth_provider.dart';
 import '../../features/dashboard/presentation/pages/dashboard_page.dart';
 import '../../features/community/presentation/pages/community_page.dart';
+import '../../features/profile/presentation/pages/user_profile_page.dart';
 
 // Router provider
 final goRouterProvider = Provider<GoRouter>((ref) {
@@ -80,7 +80,7 @@ final goRouterProvider = Provider<GoRouter>((ref) {
             routes: [
               GoRoute(
                 path: AppRoutes.profile,
-                builder: (context, state) => const ProfilePage(),
+                builder: (context, state) => const UserProfilePage(),
               ),
             ],
           ),
