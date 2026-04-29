@@ -203,10 +203,7 @@ class _CameraDiagnosticPageState extends State<CameraDiagnosticPage> {
       appBar: AppBar(
         title: const Text('Crop Diagnostics', style: TextStyle(fontWeight: FontWeight.w900)),
         elevation: 0,
-        leading: IconButton(
-          onPressed: () => Navigator.of(context).pop(),
-          icon: const Icon(Icons.arrow_back_ios_new_rounded, size: 20),
-        ),
+        automaticallyImplyLeading: false,
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(24),

@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:farmcom/core/theme/app_colors.dart';
 import 'package:farmcom/core/presentation/widgets/farmcom_card.dart';
 import 'package:farmcom/core/presentation/widgets/farmcom_button.dart';
+import 'package:farmcom/core/presentation/widgets/offline_indicator.dart';
 
 class FieldGuidePage extends ConsumerWidget {
   const FieldGuidePage({super.key});
@@ -15,7 +16,16 @@ class FieldGuidePage extends ConsumerWidget {
       length: 2,
       child: Scaffold(
         backgroundColor: isDark ? AppColors.darkBackground : AppColors.grey50,
-        body: NestedScrollView(
+        body: Stack(
+          children: [
+            RefreshIndicator(
+              onRefresh: () async {
+                // Simulate data refresh
+                await Future.delayed(const Duration(seconds: 1));
+              },
+              color: AppColors.primary,
+              backgroundColor: isDark ? AppColors.darkSurface : Colors.white,
+              child: NestedScrollView(
           headerSliverBuilder: (context, innerBoxIsScrolled) => [
             SliverAppBar(
               expandedHeight: 120,
@@ -94,6 +104,16 @@ class FieldGuidePage extends ConsumerWidget {
             ],
           ),
         ),
+              ),
+              // Offline indicator
+              const Positioned(
+                top: 0,
+                left: 0,
+                right: 0,
+                child: OfflineIndicator(),
+              ),
+            ],
+          ),
       ),
     );
   }

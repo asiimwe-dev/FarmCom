@@ -76,7 +76,13 @@ class MainShell extends ConsumerWidget {
         }
       },
       child: Scaffold(
-        body: navigationShell,
+        body: AnimatedSwitcher(
+          duration: const Duration(milliseconds: 300),
+          transitionBuilder: (child, animation) {
+            return FadeTransition(opacity: animation, child: child);
+          },
+          child: navigationShell,
+        ),
         bottomNavigationBar: _buildBottomNav(context, isDark),
       ),
     );
@@ -116,7 +122,7 @@ class MainShell extends ConsumerWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: List.generate(
-                  4,
+                  5,
                   (index) => _NavItem(
                     icon: _getIcon(index, false),
                     selectedIcon: _getIcon(index, true),
@@ -142,6 +148,7 @@ class MainShell extends ConsumerWidget {
     final icons = [
       (Icons.home_outlined, Icons.home_rounded),
       (Icons.groups_outlined, Icons.groups_rounded),
+      (Icons.camera_alt_outlined, Icons.camera_alt_rounded),
       (Icons.menu_book_outlined, Icons.menu_book_rounded),
       (Icons.person_outline_rounded, Icons.person_rounded),
     ];
@@ -149,7 +156,7 @@ class MainShell extends ConsumerWidget {
   }
 
   String _getLabel(int index) {
-    const labels = ['Home', 'Communities', 'Guide', 'Profile'];
+    const labels = ['Home', 'Community', 'Diagnose', 'Learn', 'Profile'];
     return labels[index];
   }
 }
@@ -222,18 +229,18 @@ class _NavItemState extends State<_NavItem>
                 // Animated background
                 Container(
                   padding: EdgeInsets.symmetric(
-                    horizontal: 16 + (8 * _controller.value),
-                    vertical: 10 + (2 * _controller.value),
+                    horizontal: 14 + (6 * _controller.value),
+                    vertical: 8 + (1.5 * _controller.value),
                   ),
                   decoration: BoxDecoration(
                     color: AppColors.primary.withValues(
                       alpha: 0.12 * _controller.value,
                     ),
-                    borderRadius: BorderRadius.circular(16),
+                    borderRadius: BorderRadius.circular(14),
                   ),
                   child: Icon(
                     widget.isSelected ? widget.selectedIcon : widget.icon,
-                    size: 24 + (2 * _controller.value),
+                    size: 22 + (1.5 * _controller.value),
                     color: Color.lerp(
                       isDark
                           ? AppColors.darkTextTertiary
@@ -243,7 +250,7 @@ class _NavItemState extends State<_NavItem>
                     ),
                   ),
                 ),
-                const SizedBox(height: 6),
+                const SizedBox(height: 4),
                 // Label with smooth transition
                 ScaleTransition(
                   scale: Tween<double>(begin: 0.8, end: 1).animate(

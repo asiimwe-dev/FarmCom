@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:farmcom/core/theme/app_colors.dart';
 import 'package:farmcom/core/presentation/widgets/farmcom_card.dart';
 import 'package:farmcom/core/presentation/widgets/farmcom_text_field.dart';
+import 'package:farmcom/core/presentation/widgets/offline_indicator.dart';
 import 'community_chat_page.dart';
 
 class CommunityPage extends ConsumerWidget {
@@ -13,8 +14,17 @@ class CommunityPage extends ConsumerWidget {
     final isDark = Theme.of(context).brightness == Brightness.dark;
 
     return Scaffold(
-      body: CustomScrollView(
-        slivers: [
+      body: Stack(
+        children: [
+          RefreshIndicator(
+            onRefresh: () async {
+              // Simulate data refresh
+              await Future.delayed(const Duration(seconds: 1));
+            },
+            color: AppColors.primary,
+            backgroundColor: isDark ? AppColors.darkSurface : Colors.white,
+            child: CustomScrollView(
+              slivers: [
           SliverAppBar(
             expandedHeight: 140,
             floating: false,
@@ -198,6 +208,16 @@ class CommunityPage extends ConsumerWidget {
                 ],
               ),
             ),
+          ),
+        ],
+          ),
+          ),
+          // Offline indicator
+          const Positioned(
+            top: 0,
+            left: 0,
+            right: 0,
+            child: OfflineIndicator(),
           ),
         ],
       ),

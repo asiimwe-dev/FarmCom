@@ -65,6 +65,16 @@ final goRouterProvider = Provider<GoRouter>((ref) {
             ],
           ),
 
+          // Diagnostics branch (AI Camera - core feature)
+          StatefulShellBranch(
+            routes: [
+              GoRoute(
+                path: AppRoutes.diagnostics,
+                builder: (context, state) => const CameraDiagnosticPage(),
+              ),
+            ],
+          ),
+
           // Field Guide branch
           StatefulShellBranch(
             routes: [
@@ -87,13 +97,7 @@ final goRouterProvider = Provider<GoRouter>((ref) {
         ],
       ),
 
-      // Diagnostics (camera) route
-      GoRoute(
-        path: AppRoutes.diagnostics,
-        builder: (context, state) => const CameraDiagnosticPage(),
-      ),
-
-      // Notifications route
+      // Notifications route (not in shell, direct access)
       GoRoute(
         path: AppRoutes.notifications,
         builder: (context, state) => const NotificationsPage(),

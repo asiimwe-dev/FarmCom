@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:farmcom/core/theme/app_colors.dart';
+import 'package:farmcom/core/presentation/widgets/modern_chat_bubble.dart';
+import 'package:farmcom/core/presentation/widgets/modern_chat_input.dart';
 
 class CommunityChatPage extends StatefulWidget {
   final String communityName;
@@ -81,6 +83,29 @@ class _CommunityChatPageState extends State<CommunityChatPage> {
     });
   }
 
+  DateTime? _parseTime(String timeStr) {
+    if (timeStr == 'Just now') {
+      return DateTime.now();
+    }
+    // Parse time format like "10:30 AM"
+    try {
+      final now = DateTime.now();
+      final parts = timeStr.split(':');
+      if (parts.length >= 2) {
+        int hour = int.parse(parts[0]);
+        final minutePart = parts[1].split(' ');
+        final minute = int.parse(minutePart[0]);
+        final period = minutePart.length > 1 ? minutePart[1] : '';
+
+        if (period == 'PM' && hour != 12) hour += 12;
+        if (period == 'AM' && hour == 12) hour = 0;
+
+        return DateTime(now.year, now.month, now.day, hour, minute);
+      }
+    } catch (_) {}
+    return null;
+  }
+
   @override
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
@@ -123,86 +148,31 @@ class _CommunityChatPageState extends State<CommunityChatPage> {
               itemCount: _messages.length,
               itemBuilder: (context, index) {
                 final message = _messages[index];
-                return _ChatBubble(
-                  user: message['user'],
+                return ModernChatBubble(
                   text: message['text'],
-                  isMe: message['isMe'],
-                  time: message['time'],
-                  role: message['role'],
+                  isUser: message['isMe'],
+                  senderName: message['user'],
+                  senderRole: message['role'],
+                  timestamp: _parseTime(message['time']),
+                  isExpert: message['role'] == 'Expert',
                 );
               },
             ),
           ),
-          _buildInputArea(isDark),
-        ],
-      ),
-    );
-  }
-
-  Widget _buildInputArea(bool isDark) {
-    return Container(
-      padding: EdgeInsets.fromLTRB(16, 12, 16, MediaQuery.of(context).padding.bottom + 12),
-      decoration: BoxDecoration(
-        color: isDark ? const Color(0xFF1E1E1E) : Colors.white,
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withValues(alpha: 0.05),
-            blurRadius: 10,
-            offset: const Offset(0, -2),
-          ),
-        ],
-      ),
-      child: Row(
-        children: [
-          IconButton(
-            onPressed: () {},
-            icon: const Icon(Icons.add_circle_outline_rounded, color: AppColors.primary),
-          ),
-          IconButton(
-            onPressed: () {
-               ScaffoldMessenger.of(context).showSnackBar(
-                const SnackBar(content: Text('Voice note feature coming soon!')),
+          ModernChatInputArea(
+            controller: _messageController,
+            onSend: _sendMessage,
+            onAttach: () {
+              ScaffoldMessenger.of(context).showSnackBar(
+                const SnackBar(content: Text('Media attachment feature coming soon!')),
               );
             },
-            icon: const Icon(Icons.mic_none_rounded, color: AppColors.primary),
-            style: IconButton.styleFrom(backgroundColor: AppColors.primarySoft),
-          ),
-          const SizedBox(width: 8),
-          Expanded(
-            child: Container(
-              padding: const EdgeInsets.symmetric(horizontal: 16),
-              decoration: BoxDecoration(
-                color: isDark ? const Color(0xFF2C2C2C) : AppColors.grey50,
-                borderRadius: BorderRadius.circular(24),
-                border: Border.all(color: isDark ? Colors.white12 : AppColors.grey200),
-              ),
-              child: TextField(
-                controller: _messageController,
-                maxLines: 4,
-                minLines: 1,
-                style: TextStyle(color: isDark ? Colors.white : AppColors.grey900),
-                decoration: InputDecoration(
-                  hintText: 'Share with community...',
-                  hintStyle: TextStyle(color: isDark ? Colors.white38 : AppColors.grey500),
-                  border: InputBorder.none,
-                  enabledBorder: InputBorder.none,
-                  focusedBorder: InputBorder.none,
-                  contentPadding: const EdgeInsets.symmetric(vertical: 12),
-                ),
-              ),
-            ),
-          ),
-          const SizedBox(width: 12),
-          GestureDetector(
-            onTap: _sendMessage,
-            child: Container(
-              padding: const EdgeInsets.all(12),
-              decoration: const BoxDecoration(
-                color: AppColors.primary,
-                shape: BoxShape.circle,
-              ),
-              child: const Icon(Icons.send_rounded, color: Colors.white, size: 20),
-            ),
+            onMic: () {
+              ScaffoldMessenger.of(context).showSnackBar(
+                const SnackBar(content: Text('Voice message feature coming soon!')),
+              );
+            },
+            hintText: 'Share with community...',
           ),
         ],
       ),
@@ -210,102 +180,3 @@ class _CommunityChatPageState extends State<CommunityChatPage> {
   }
 }
 
-class _ChatBubble extends StatelessWidget {
-  final String user;
-  final String text;
-  final bool isMe;
-  final String time;
-  final String role;
-
-  const _ChatBubble({
-    required this.user,
-    required this.text,
-    required this.isMe,
-    required this.time,
-    required this.role,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    final isExpert = role == 'Expert';
-    final isDark = Theme.of(context).brightness == Brightness.dark;
-    
-    return Padding(
-      padding: const EdgeInsets.only(bottom: 20),
-      child: Column(
-        crossAxisAlignment: isMe ? CrossAxisAlignment.end : CrossAxisAlignment.start,
-        children: [
-          if (!isMe)
-            Padding(
-              padding: const EdgeInsets.only(left: 4, bottom: 4),
-              child: Row(
-                children: [
-                  Text(
-                    user,
-                    style: TextStyle(fontSize: 12, fontWeight: FontWeight.w800, color: isDark ? Colors.white : AppColors.grey900),
-                  ),
-                  if (isExpert) ...[
-                    const SizedBox(width: 6),
-                    Container(
-                      padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
-                      decoration: BoxDecoration(
-                        color: AppColors.tertiarySoft,
-                        borderRadius: BorderRadius.circular(4),
-                      ),
-                      child: const Text(
-                        'EXPERT',
-                        style: TextStyle(fontSize: 8, fontWeight: FontWeight.w900, color: AppColors.tertiary),
-                      ),
-                    ),
-                  ],
-                ],
-              ),
-            ),
-          Container(
-            padding: const EdgeInsets.all(16),
-            constraints: BoxConstraints(maxWidth: MediaQuery.of(context).size.width * 0.8),
-            decoration: BoxDecoration(
-              color: isMe ? AppColors.primary : (isDark ? const Color(0xFF2C2C2C) : (isExpert ? AppColors.tertiarySoft.withValues(alpha: 0.3) : Colors.white)),
-              borderRadius: BorderRadius.only(
-                topLeft: const Radius.circular(20),
-                topRight: const Radius.circular(20),
-                bottomLeft: Radius.circular(isMe ? 20 : 4),
-                bottomRight: Radius.circular(isMe ? 4 : 20),
-              ),
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.black.withValues(alpha: 0.03),
-                  blurRadius: 5,
-                  offset: const Offset(0, 2),
-                ),
-              ],
-            ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  text,
-                  style: TextStyle(
-                    color: isMe ? Colors.white : (isDark ? Colors.white : AppColors.grey900),
-                    fontSize: 14,
-                    fontWeight: FontWeight.w500,
-                    height: 1.4,
-                  ),
-                ),
-                const SizedBox(height: 6),
-                Text(
-                  time,
-                  style: TextStyle(
-                    color: isMe ? Colors.white.withValues(alpha: 0.6) : (isDark ? Colors.white38 : AppColors.grey500),
-                    fontSize: 10,
-                    fontWeight: FontWeight.w600,
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-}

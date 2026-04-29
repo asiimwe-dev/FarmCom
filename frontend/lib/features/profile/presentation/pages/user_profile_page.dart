@@ -5,6 +5,7 @@ import 'package:farmcom/features/settings/presentation/pages/settings_page.dart'
 import 'package:farmcom/features/profile/presentation/pages/edit_profile_page.dart';
 import 'package:farmcom/core/theme/app_colors.dart';
 import 'package:farmcom/core/presentation/widgets/farmcom_card.dart';
+import 'package:farmcom/core/presentation/widgets/offline_indicator.dart';
 
 class UserProfilePage extends ConsumerStatefulWidget {
   const UserProfilePage({super.key});
@@ -20,7 +21,16 @@ class _UserProfilePageState extends ConsumerState<UserProfilePage> {
     final isDark = Theme.of(context).brightness == Brightness.dark;
 
     return Scaffold(
-      body: CustomScrollView(
+      body: Stack(
+        children: [
+          RefreshIndicator(
+            onRefresh: () async {
+              // Simulate data refresh
+              await Future.delayed(const Duration(seconds: 1));
+            },
+            color: AppColors.primary,
+            backgroundColor: isDark ? AppColors.darkSurface : Colors.white,
+            child: CustomScrollView(
         slivers: [
           SliverAppBar(
             expandedHeight: 200,
@@ -168,6 +178,16 @@ class _UserProfilePageState extends ConsumerState<UserProfilePage> {
           ),
         ],
       ),
+            ),
+            // Offline indicator
+            const Positioned(
+              top: 0,
+              left: 0,
+              right: 0,
+              child: OfflineIndicator(),
+            ),
+          ],
+        ),
     );
   }
 

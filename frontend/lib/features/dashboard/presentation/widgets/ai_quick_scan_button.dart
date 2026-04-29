@@ -9,11 +9,8 @@ class AIQuickScanButton extends ConsumerWidget {
       padding: EdgeInsets.zero,
       color: AppColors.primary,
       onTap: () {
-        Navigator.of(context).push(
-          MaterialPageRoute(
-            builder: (context) => const CameraDiagnosticPage(),
-          ),
-        );
+        // Navigate to diagnose tab
+        context.go(AppRoutes.diagnostics);
       },
       child: Container(
         padding: const EdgeInsets.all(24),

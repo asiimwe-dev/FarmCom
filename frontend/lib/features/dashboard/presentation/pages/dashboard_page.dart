@@ -11,6 +11,7 @@ import 'package:farmcom/core/theme/app_colors.dart';
 import 'package:farmcom/core/theme/app_typography.dart';
 import 'package:farmcom/core/presentation/widgets/farmcom_card.dart';
 import 'package:farmcom/core/presentation/widgets/farmcom_button.dart';
+import 'package:farmcom/core/presentation/widgets/offline_indicator.dart';
 
 part '../widgets/niche_communities_list.dart';
 part '../widgets/ai_quick_scan_button.dart';
@@ -26,8 +27,17 @@ class DashboardPage extends ConsumerWidget {
     final isDark = Theme.of(context).brightness == Brightness.dark;
 
     return Scaffold(
-      body: CustomScrollView(
-        slivers: [
+      body: RefreshIndicator(
+        onRefresh: () async {
+          // Simulate data refresh
+          await Future.delayed(const Duration(seconds: 1));
+        },
+        color: AppColors.primary,
+        backgroundColor: isDark ? AppColors.darkSurface : Colors.white,
+        child: Stack(
+          children: [
+            CustomScrollView(
+              slivers: [
           // ============ Modern Header with Gradient ============
           SliverAppBar(
             expandedHeight: 200,
@@ -275,7 +285,17 @@ class DashboardPage extends ConsumerWidget {
           ),
 
           const SliverToBoxAdapter(child: SizedBox(height: 100)),
-        ],
+            ],
+            ),
+            // Offline indicator
+            const Positioned(
+              top: 0,
+              left: 0,
+              right: 0,
+              child: OfflineIndicator(),
+            ),
+          ],
+        ),
       ),
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () {

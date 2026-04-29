@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:farmcom/core/theme/app_colors.dart';
 import 'package:farmcom/core/theme/app_typography.dart';
 
@@ -71,6 +72,11 @@ class _FarmComButtonState extends State<FarmComButton>
     }
   }
 
+  void _onPressed() {
+    HapticFeedback.mediumImpact();
+    widget.onPressed?.call();
+  }
+
   @override
   Widget build(BuildContext context) {
     final (height, horizontalPadding) = _getSizeParameters();
@@ -108,7 +114,7 @@ class _FarmComButtonState extends State<FarmComButton>
 
   Widget _buildPrimaryButton(double horizontalPadding) {
     return ElevatedButton(
-      onPressed: widget.isLoading || !widget.enabled ? null : widget.onPressed,
+      onPressed: widget.isLoading || !widget.enabled ? null : _onPressed,
       style: ElevatedButton.styleFrom(
         backgroundColor: widget.enabled
             ? AppColors.primary
@@ -128,7 +134,7 @@ class _FarmComButtonState extends State<FarmComButton>
 
   Widget _buildSecondaryButton(double horizontalPadding) {
     return ElevatedButton(
-      onPressed: widget.isLoading || !widget.enabled ? null : widget.onPressed,
+      onPressed: widget.isLoading || !widget.enabled ? null : _onPressed,
       style: ElevatedButton.styleFrom(
         backgroundColor: widget.enabled
             ? AppColors.secondary
@@ -147,7 +153,7 @@ class _FarmComButtonState extends State<FarmComButton>
 
   Widget _buildTertiaryButton(double horizontalPadding) {
     return ElevatedButton(
-      onPressed: widget.isLoading || !widget.enabled ? null : widget.onPressed,
+      onPressed: widget.isLoading || !widget.enabled ? null : _onPressed,
       style: ElevatedButton.styleFrom(
         backgroundColor: widget.enabled
             ? AppColors.primarySoft
@@ -166,7 +172,7 @@ class _FarmComButtonState extends State<FarmComButton>
 
   Widget _buildOutlineButton(double horizontalPadding) {
     return OutlinedButton(
-      onPressed: widget.isLoading || !widget.enabled ? null : widget.onPressed,
+      onPressed: widget.isLoading || !widget.enabled ? null : _onPressed,
       style: OutlinedButton.styleFrom(
         foregroundColor: widget.enabled ? AppColors.primary : AppColors.grey500,
         disabledForegroundColor: AppColors.grey400,
@@ -188,7 +194,7 @@ class _FarmComButtonState extends State<FarmComButton>
     double horizontalPadding,
   ) {
     return TextButton(
-      onPressed: widget.isLoading || !widget.enabled ? null : widget.onPressed,
+      onPressed: widget.isLoading || !widget.enabled ? null : _onPressed,
       style: TextButton.styleFrom(
         foregroundColor: widget.enabled
             ? AppColors.primary

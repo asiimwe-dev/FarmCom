@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:farmcom/core/theme/app_colors.dart';
 
 /// Card variant styles
@@ -137,7 +138,12 @@ class _FarmComCardState extends State<FarmComCard>
         onEnter: (_) => _onEnter(),
         onExit: (_) => _onExit(),
         child: InkWell(
-          onTap: widget.isLoading ? null : widget.onTap,
+          onTap: widget.isLoading
+              ? null
+              : () {
+                  HapticFeedback.mediumImpact();
+                  widget.onTap?.call();
+                },
           borderRadius: radius,
           child: wrappedCard,
         ),

@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:farmcom/core/theme/app_colors.dart';
 import 'package:farmcom/core/presentation/widgets/farmcom_card.dart';
+import 'package:farmcom/core/presentation/widgets/modern_chat_bubble.dart';
+import 'package:farmcom/core/presentation/widgets/modern_chat_input.dart';
 
 class AIChatPage extends ConsumerStatefulWidget {
   const AIChatPage({super.key});
@@ -146,83 +148,39 @@ class _AIChatPageState extends ConsumerState<AIChatPage> {
               itemCount: _messages.length,
               itemBuilder: (context, index) {
                 final message = _messages[index];
-                return _ChatBubble(message: message);
+                return AIChatBubble(
+                  text: message.text,
+                  isUser: message.isUser,
+                  timestamp: message.timestamp,
+                );
               },
             ),
           ),
-          _buildInputArea(isDark),
+          ModernChatInputArea(
+            controller: _messageController,
+            onSend: _sendMessage,
+            onMic: () {
+              ScaffoldMessenger.of(context).showSnackBar(
+                const SnackBar(content: Text('Voice message feature coming soon!')),
+              );
+            },
+            hintText: 'Ask me anything...',
+          ),
         ],
       ),
     );
   }
 
   Widget _buildInputArea(bool isDark) {
-    return Container(
-      padding: EdgeInsets.fromLTRB(16, 12, 16, MediaQuery.of(context).padding.bottom + 12),
-      decoration: BoxDecoration(
-        color: isDark ? const Color(0xFF1E1E1E) : Colors.white,
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withValues(alpha: 0.05),
-            blurRadius: 10,
-            offset: const Offset(0, -2),
-          ),
-        ],
-      ),
-      child: Row(
-        children: [
-          IconButton(
-            onPressed: () {
-              ScaffoldMessenger.of(context).showSnackBar(
-                const SnackBar(content: Text('Voice note feature coming soon!')),
-              );
-            },
-            icon: const Icon(Icons.mic_rounded, color: AppColors.primary),
-            style: IconButton.styleFrom(backgroundColor: AppColors.primarySoft),
-          ),
-          const SizedBox(width: 12),
-          Expanded(
-            child: Container(
-              padding: const EdgeInsets.symmetric(horizontal: 16),
-              decoration: BoxDecoration(
-                color: isDark ? const Color(0xFF2C2C2C) : AppColors.grey50,
-                borderRadius: BorderRadius.circular(24),
-                border: Border.all(color: isDark ? Colors.white12 : AppColors.grey200),
-              ),
-              child: TextField(
-                controller: _messageController,
-                maxLines: 4,
-                minLines: 1,
-                style: TextStyle(color: isDark ? Colors.white : AppColors.grey900),
-                decoration: InputDecoration(
-                  hintText: 'Ask me anything...',
-                  hintStyle: TextStyle(color: isDark ? Colors.white38 : AppColors.grey500),
-                  border: InputBorder.none,
-                  enabledBorder: InputBorder.none,
-                  focusedBorder: InputBorder.none,
-                  contentPadding: const EdgeInsets.symmetric(vertical: 12),
-                ),
-              ),
-            ),
-          ),
-          const SizedBox(width: 12),
-          GestureDetector(
-            onTap: _sendMessage,
-            child: Container(
-              padding: const EdgeInsets.all(12),
-              decoration: const BoxDecoration(
-                color: AppColors.primary,
-                shape: BoxShape.circle,
-              ),
-              child: const Icon(Icons.send_rounded, color: Colors.white, size: 20),
-            ),
-          ),
-        ],
-      ),
-    );
+    return SizedBox.shrink();
+  }
+
+  Widget _buildOldChatBubble(bool isDark) {
+    return SizedBox.shrink();
   }
 }
 
+// Old classes kept for reference (can be deleted)
 class _ChatBubble extends StatelessWidget {
   final ChatMessage message;
 
@@ -230,76 +188,7 @@ class _ChatBubble extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final isUser = message.isUser;
-    final isDark = Theme.of(context).brightness == Brightness.dark;
-    
-    return Padding(
-      padding: const EdgeInsets.only(bottom: 16),
-      child: Row(
-        mainAxisAlignment: isUser ? MainAxisAlignment.end : MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.end,
-        children: [
-          if (!isUser) ...[
-            Container(
-              width: 32,
-              height: 32,
-              decoration: BoxDecoration(
-                color: AppColors.primarySoft,
-                shape: BoxShape.circle,
-              ),
-              child: const Icon(Icons.smart_toy_rounded, color: AppColors.primary, size: 16),
-            ),
-            const SizedBox(width: 8),
-          ],
-          Flexible(
-            child: Container(
-              padding: const EdgeInsets.all(16),
-              decoration: BoxDecoration(
-                color: isUser ? AppColors.primary : (isDark ? const Color(0xFF2C2C2C) : Colors.white),
-                borderRadius: BorderRadius.only(
-                  topLeft: const Radius.circular(20),
-                  topRight: const Radius.circular(20),
-                  bottomLeft: Radius.circular(isUser ? 20 : 4),
-                  bottomRight: Radius.circular(isUser ? 4 : 20),
-                ),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.black.withValues(alpha: 0.03),
-                    blurRadius: 5,
-                    offset: const Offset(0, 2),
-                  ),
-                ],
-              ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    message.text,
-                    style: TextStyle(
-                      color: isUser ? Colors.white : (isDark ? Colors.white : AppColors.grey900),
-                      fontSize: 14,
-                      fontWeight: FontWeight.w500,
-                      height: 1.4,
-                    ),
-                  ),
-                  const SizedBox(height: 6),
-                  Text(
-                    '${message.timestamp.hour}:${message.timestamp.minute.toString().padLeft(2, '0')}',
-                    style: TextStyle(
-                      color: isUser ? Colors.white.withValues(alpha: 0.6) : (isDark ? Colors.white38 : AppColors.grey500),
-                      fontSize: 10,
-                      fontWeight: FontWeight.w600,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
-          if (isUser) const SizedBox(width: 40),
-          if (!isUser) const SizedBox(width: 40),
-        ],
-      ),
-    );
+    return SizedBox.shrink();
   }
 }
 
