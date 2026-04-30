@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:farmcom/core/theme/app_typography.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:farmcom/core/theme/app_colors.dart';
-import 'package:farmcom/core/presentation/widgets/imessage_bubble.dart';
+import 'package:farmcom/core/presentation/widgets/farmcom_card.dart';
+import 'package:farmcom/core/presentation/widgets/modern_chat_bubble.dart';
 import 'package:farmcom/core/presentation/widgets/modern_chat_input.dart';
 
 class AIChatPage extends ConsumerStatefulWidget {
@@ -45,7 +45,6 @@ class _AIChatPageState extends ConsumerState<AIChatPage> {
     _messageController.clear();
     _scrollToBottom();
 
-    // Simulate AI response
     Future.delayed(const Duration(milliseconds: 1000), () {
       if (mounted) {
         setState(() {
@@ -83,7 +82,7 @@ class _AIChatPageState extends ConsumerState<AIChatPage> {
       return 'I can assist you with:\n• Disease diagnosis tips\n• Market price trends\n• Planting schedules\n• Community recommendations\n\nWhat would you like to explore?';
     }
 
-    return 'That\'s an interesting point. Based on current agricultural best practices in East Africa, I recommend checking our Explore section for detailed steps on that specific crop management technique.\n\nWould you like me to find a specific guide for you?';
+    return 'That\'s an interesting point. Based on current agricultural best practices in East Africa, I recommend checking our Field Guide for detailed steps on that specific crop management technique.\n\nWould you like me to find a specific guide for you?';
   }
 
   @override
@@ -91,7 +90,7 @@ class _AIChatPageState extends ConsumerState<AIChatPage> {
     final isDark = Theme.of(context).brightness == Brightness.dark;
     
     return Scaffold(
-      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+      backgroundColor: isDark ? const Color(0xFF121212) : AppColors.grey50,
       appBar: AppBar(
         titleSpacing: 0,
         backgroundColor: isDark ? const Color(0xFF1E1E1E) : Colors.white,
@@ -105,7 +104,7 @@ class _AIChatPageState extends ConsumerState<AIChatPage> {
             Container(
               padding: const EdgeInsets.all(8),
               decoration: BoxDecoration(
-                color: AppColors.primarySoft.withValues(alpha: 0.5),
+                color: AppColors.primarySoft,
                 shape: BoxShape.circle,
               ),
               child: const Icon(Icons.smart_toy_rounded, color: AppColors.primary, size: 20),
@@ -116,11 +115,7 @@ class _AIChatPageState extends ConsumerState<AIChatPage> {
               children: [
                 Text(
                   'AI Assistant',
-                  style: TextStyle(
-                    AppTypography.titleMedium,
-                    fontWeight: FontWeight.w900,
-                    color: Theme.of(context).appBarTheme.foregroundColor,
-                  ),
+                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.w900, color: isDark ? Colors.white : AppColors.grey900),
                 ),
                 Row(
                   children: [
@@ -135,7 +130,7 @@ class _AIChatPageState extends ConsumerState<AIChatPage> {
                     const SizedBox(width: 4),
                     Text(
                       'Always active',
-                      style: AppTypography.captionSmall.copyWith( color: isDark ? Colors.white60 : AppColors.grey500, fontWeight: FontWeight.w600),
+                      style: TextStyle(fontSize: 10, color: isDark ? Colors.white60 : AppColors.grey500, fontWeight: FontWeight.w600),
                     ),
                   ],
                 ),
@@ -149,11 +144,11 @@ class _AIChatPageState extends ConsumerState<AIChatPage> {
           Expanded(
             child: ListView.builder(
               controller: _scrollController,
-              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 16),
+              padding: const EdgeInsets.all(20),
               itemCount: _messages.length,
               itemBuilder: (context, index) {
                 final message = _messages[index];
-                return iMessageBubble(
+                return AIChatBubble(
                   text: message.text,
                   isUser: message.isUser,
                   timestamp: message.timestamp,
@@ -161,14 +156,9 @@ class _AIChatPageState extends ConsumerState<AIChatPage> {
               },
             ),
           ),
-          ModernChatInput(
+          ModernChatInputArea(
             controller: _messageController,
             onSend: _sendMessage,
-            onAttach: () {
-              ScaffoldMessenger.of(context).showSnackBar(
-                const SnackBar(content: Text('Media attachment feature coming soon!')),
-              );
-            },
             onMic: () {
               ScaffoldMessenger.of(context).showSnackBar(
                 const SnackBar(content: Text('Voice message feature coming soon!')),
@@ -179,6 +169,26 @@ class _AIChatPageState extends ConsumerState<AIChatPage> {
         ],
       ),
     );
+  }
+
+  Widget _buildInputArea(bool isDark) {
+    return SizedBox.shrink();
+  }
+
+  Widget _buildOldChatBubble(bool isDark) {
+    return SizedBox.shrink();
+  }
+}
+
+// Old classes kept for reference (can be deleted)
+class _ChatBubble extends StatelessWidget {
+  final ChatMessage message;
+
+  const _ChatBubble({required this.message});
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox.shrink();
   }
 }
 

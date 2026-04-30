@@ -3,11 +3,10 @@ import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'dart:ui';
 import 'package:go_router/go_router.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:farmcom/core/theme/app_colors.dart';
 import 'package:farmcom/core/theme/app_typography.dart';
 
-class MainShell extends ConsumerStatefulWidget {
+class MainShell extends ConsumerWidget {
   final StatefulNavigationShell navigationShell;
 
   const MainShell({
@@ -15,117 +14,45 @@ class MainShell extends ConsumerStatefulWidget {
     required this.navigationShell,
   });
 
-  @override
-  ConsumerState<MainShell> createState() => _MainShellState();
-}
-
-class _MainShellState extends ConsumerState<MainShell> {
-  static const String _hideExitDialogKey = 'hide_exit_confirmation';
-
-  Future<bool> _shouldShowExitDialog() async {
-    final prefs = await SharedPreferences.getInstance();
-    return !(prefs.getBool(_hideExitDialogKey) ?? false);
-  }
-
-  Future<void> _setHideExitDialog(bool value) async {
-    final prefs = await SharedPreferences.getInstance();
-    await prefs.setBool(_hideExitDialogKey, value);
-  }
-
   Future<bool> _showExitConfirmation(BuildContext context) async {
-    bool localDontShowAgain = false;
-    
     final result = await showDialog<bool>(
       context: context,
-      builder: (context) => StatefulBuilder(
-        builder: (context, setState) => AlertDialog(
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(24)),
-          backgroundColor: Theme.of(context).brightness == Brightness.dark 
-              ? const Color(0xFF1E1E1E) 
-              : Colors.white,
-          title: const Text(
-            'Exit FarmCom',
-            style: TextStyle(fontWeight: FontWeight.w900, fontSize: 20),
-          ),
-          content: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              const Text(
-                'Are you sure you want to exit the application?',
-                style: TextStyle(fontSize: 15, height: 1.5),
-              ),
-              const SizedBox(height: 16),
-              Row(
-                children: [
-                  SizedBox(
-                    height: 24,
-                    width: 24,
-                    child: Checkbox(
-                      value: localDontShowAgain,
-                      activeColor: AppColors.primary,
-                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
-                      onChanged: (value) {
-                        setState(() {
-                          localDontShowAgain = value ?? false;
-                        });
-                      },
-                    ),
-                  ),
-                  const SizedBox(width: 12),
-                  GestureDetector(
-                    onTap: () {
-                      setState(() {
-                        localDontShowAgain = !localDontShowAgain;
-                      });
-                    },
-                    child: const Text(
-                      'Don\'t show again',
-                      style: TextStyle(fontSize: 14, fontWeight: FontWeight.w500),
-                    ),
-                  ),
-                ],
-              ),
-            ],
-          ),
-          actionsPadding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
-          actions: [
-            TextButton(
-              onPressed: () => Navigator.pop(context, false),
-              child: Text(
-                'Cancel',
-                style: TextStyle(
-                  color: Theme.of(context).brightness == Brightness.dark ? Colors.white70 : AppColors.grey500,
-                  fontWeight: FontWeight.w700,
-                ),
-              ),
-            ),
-            ElevatedButton(
-              onPressed: () {
-                if (localDontShowAgain) {
-                  _setHideExitDialog(true);
-                }
-                Navigator.pop(context, true);
-              },
-              style: ElevatedButton.styleFrom(
-                backgroundColor: AppColors.error,
-                foregroundColor: Colors.white,
-                elevation: 0,
-                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-              ),
-              child: const Text(
-                'Exit App',
-                style: TextStyle(fontWeight: FontWeight.w900),
-              ),
-            ),
-          ],
+      builder: (context) => AlertDialog(
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+        title: const Text(
+          'Exit FarmCom',
+          style: TextStyle(fontWeight: FontWeight.w900),
         ),
+        content: const Text('Are you sure you want to exit the application?'),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(context, false),
+            child: const Text(
+              'Cancel',
+              style: TextStyle(
+                color: AppColors.grey500,
+                fontWeight: FontWeight.w700,
+              ),
+            ),
+          ),
+          TextButton(
+            onPressed: () => Navigator.pop(context, true),
+            child: const Text(
+              'Exit',
+              style: TextStyle(
+                color: AppColors.error,
+                fontWeight: FontWeight.w900,
+              ),
+            ),
+          ),
+        ],
       ),
     );
     return result ?? false;
   }
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
 
     return PopScope(
@@ -133,28 +60,19 @@ class _MainShellState extends ConsumerState<MainShell> {
       onPopInvokedWithResult: (didPop, result) async {
         if (didPop) return;
         
-        // 1. If not on home tab (index 0), go back to home instead of exiting
-        if (widget.navigationShell.currentIndex != 0) {
-          widget.navigationShell.goBranch(
+        // If not on home tab (index 0), go back to home instead of exiting
+        if (navigationShell.currentIndex != 0) {
+          navigationShell.goBranch(
             0,
-            initialLocation: false, // Go to home branch's current state
+            initialLocation: true,
           );
           return;
         }
         
-        // 2. If on home tab, check if we should show confirmation
-        final shouldShow = await _shouldShowExitDialog();
-        if (!shouldShow) {
+        // If on home tab, show exit confirmation
+        final shouldPop = await _showExitConfirmation(context);
+        if (shouldPop && context.mounted) {
           SystemNavigator.pop();
-          return;
-        }
-
-        // 3. Show exit confirmation
-        if (context.mounted) {
-          final shouldPop = await _showExitConfirmation(context);
-          if (shouldPop && context.mounted) {
-            SystemNavigator.pop();
-          }
         }
       },
       child: Scaffold(
@@ -163,7 +81,7 @@ class _MainShellState extends ConsumerState<MainShell> {
           transitionBuilder: (child, animation) {
             return FadeTransition(opacity: animation, child: child);
           },
-          child: widget.navigationShell,
+          child: navigationShell,
         ),
         bottomNavigationBar: _buildBottomNav(context, isDark),
       ),
@@ -209,11 +127,11 @@ class _MainShellState extends ConsumerState<MainShell> {
                     icon: _getIcon(index, false),
                     selectedIcon: _getIcon(index, true),
                     label: _getLabel(index),
-                    isSelected: widget.navigationShell.currentIndex == index,
+                    isSelected: navigationShell.currentIndex == index,
                     onTap: () {
-                      widget.navigationShell.goBranch(
+                      navigationShell.goBranch(
                         index,
-                        initialLocation: index == widget.navigationShell.currentIndex,
+                        initialLocation: index == navigationShell.currentIndex,
                       );
                     },
                   ),
@@ -238,7 +156,7 @@ class _MainShellState extends ConsumerState<MainShell> {
   }
 
   String _getLabel(int index) {
-    const labels = ['Home', 'Community', 'Diagnose', 'Explore', 'Profile'];
+    const labels = ['Home', 'Community', 'Diagnose', 'Learn', 'Profile'];
     return labels[index];
   }
 }

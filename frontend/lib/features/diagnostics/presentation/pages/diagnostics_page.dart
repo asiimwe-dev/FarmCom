@@ -25,7 +25,7 @@ class DiagnosticsPage extends StatelessWidget {
                   Text(
                     'Under Construction',
                     style: TextStyle(
-                      AppTypography.titleLarge,
+                      fontSize: 18,
                       fontWeight: FontWeight.bold,
                     ),
                   ),

@@ -3,14 +3,14 @@ import 'package:flutter/material.dart';
 /// FarmCom Typography - Premium font family optimized for iOS feel
 /// Uses system fonts for professional appearance across all platforms
 class AppTypography {
-  static const double _scale = 1.22; // Increased from 1.15
+  static const double _scale = 1.15;
   static const String _fontFamily = '-apple-system'; // iOS/macOS system font
   static const String _fontFamilyFallback = 'sans-serif'; // Android fallback
 
   // ============ Display Sizes (Large Headlines) ============
   static final TextStyle displayLarge = TextStyle(
     fontFamily: _fontFamily,
-    fontSize: 60 * _scale, // Increased
+    fontSize: 57 * _scale,
     fontWeight: FontWeight.w800,
     height: 1.12,
     letterSpacing: -0.5,
@@ -18,7 +18,7 @@ class AppTypography {
 
   static final TextStyle displayMedium = TextStyle(
     fontFamily: _fontFamily,
-    fontSize: 48 * _scale, // Increased
+    fontSize: 45 * _scale,
     fontWeight: FontWeight.w800,
     height: 1.16,
     letterSpacing: -0.25,
@@ -26,7 +26,7 @@ class AppTypography {
 
   static final TextStyle displaySmall = TextStyle(
     fontFamily: _fontFamily,
-    fontSize: 38 * _scale, // Increased
+    fontSize: 36 * _scale,
     fontWeight: FontWeight.w700,
     height: 1.22,
     letterSpacing: 0,
@@ -35,7 +35,7 @@ class AppTypography {
   // ============ Headline Sizes ============
   static final TextStyle headlineLarge = TextStyle(
     fontFamily: _fontFamily,
-    fontSize: 34 * _scale, // Increased
+    fontSize: 32 * _scale,
     fontWeight: FontWeight.w700,
     height: 1.25,
     letterSpacing: -0.15,
@@ -43,7 +43,7 @@ class AppTypography {
 
   static final TextStyle headlineMedium = TextStyle(
     fontFamily: _fontFamily,
-    fontSize: 30 * _scale, // Increased
+    fontSize: 28 * _scale,
     fontWeight: FontWeight.w700,
     height: 1.29,
     letterSpacing: 0.1,
@@ -51,7 +51,7 @@ class AppTypography {
 
   static final TextStyle headlineSmall = TextStyle(
     fontFamily: _fontFamily,
-    fontSize: 26 * _scale, // Increased
+    fontSize: 24 * _scale,
     fontWeight: FontWeight.w700,
     height: 1.33,
     letterSpacing: 0.1,
@@ -60,7 +60,7 @@ class AppTypography {
   // ============ Title Sizes ============
   static final TextStyle titleLarge = TextStyle(
     fontFamily: _fontFamily,
-    fontSize: 24 * _scale, // Increased
+    fontSize: 22 * _scale,
     fontWeight: FontWeight.w700,
     height: 1.27,
     letterSpacing: 0,

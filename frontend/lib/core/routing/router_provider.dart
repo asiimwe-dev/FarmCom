@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../routing/app_routes.dart';
@@ -6,10 +7,8 @@ import '../../features/auth/presentation/pages/otp_page.dart';
 import '../../features/auth/presentation/providers/auth_provider.dart';
 import '../../features/dashboard/presentation/pages/dashboard_page.dart';
 import '../../features/community/presentation/pages/community_page.dart';
-import '../../features/community/presentation/pages/community_chat_page.dart';
-import '../../features/ai_chat/presentation/pages/ai_chat_page.dart';
 import '../../features/profile/presentation/pages/user_profile_page.dart';
-import '../../features/explore/presentation/pages/explore_page.dart';
+import '../../features/field_guide/presentation/pages/field_guide_page.dart';
 import '../../features/diagnostics/presentation/pages/camera_diagnostic_page.dart';
 import '../../features/notifications/presentation/pages/notifications_page.dart';
 
@@ -76,12 +75,12 @@ final goRouterProvider = Provider<GoRouter>((ref) {
             ],
           ),
 
-          // Explore branch
+          // Field Guide branch
           StatefulShellBranch(
             routes: [
               GoRoute(
-                path: AppRoutes.explore,
-                builder: (context, state) => const ExplorePage(),
+                path: AppRoutes.fieldGuide,
+                builder: (context, state) => const FieldGuidePage(),
               ),
             ],
           ),
@@ -96,24 +95,6 @@ final goRouterProvider = Provider<GoRouter>((ref) {
             ],
           ),
         ],
-      ),
-
-      // Independent Screens (Navigation Bar Hidden)
-      GoRoute(
-        path: AppRoutes.aiChat,
-        builder: (context, state) => const AIChatPage(),
-      ),
-      GoRoute(
-        path: AppRoutes.communityDetail,
-        builder: (context, state) {
-          final communityId = state.pathParameters['id'] ?? '';
-          final extra = state.extra as Map<String, dynamic>?;
-          return CommunityChatPage(
-            communityId: communityId,
-            communityName: extra?['name'] ?? 'Community',
-            members: extra?['members'] ?? '0',
-          );
-        },
       ),
 
       // Notifications route (not in shell, direct access)
