@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:farmcom/core/theme/app_colors.dart';
-import 'package:farmcom/core/presentation/widgets/farmcom_card.dart';
-import 'package:farmcom/core/presentation/widgets/farmcom_button.dart';
-import 'package:farmcom/core/presentation/widgets/offline_indicator.dart';
+import 'package:farmlink_ug/core/theme/app_colors.dart';
+import 'package:farmlink_ug/core/presentation/widgets/farmlink_card.dart';
+import 'package:farmlink_ug/core/presentation/widgets/farmlink_button.dart';
+import 'package:farmlink_ug/core/presentation/widgets/offline_indicator.dart';
 
 class FieldGuidePage extends ConsumerWidget {
   const FieldGuidePage({super.key});
@@ -189,7 +189,7 @@ class _LearningCenter extends StatelessWidget {
         final guide = guides[index] as Map<String, dynamic>;
         return Padding(
           padding: const EdgeInsets.only(bottom: 12),
-          child: FarmComCard(
+          child: FarmLinkCard(
             onTap: () {},
             child: Row(
               children: [
@@ -319,13 +319,13 @@ class _ExpertAccess extends StatelessWidget {
             isDark: isDark,
           ),
           const SizedBox(height: 40),
-          FarmComButton(
+          FarmLinkButton(
             label: 'Request Expert Access',
             onPressed: () {},
             icon: Icons.support_agent_rounded,
           ),
           const SizedBox(height: 24),
-          FarmComCard(
+          FarmLinkCard(
             color: AppColors.tertiarySoft.withValues(alpha: 0.5),
             border: Border.all(color: AppColors.tertiary.withValues(alpha: 0.2)),
             child: Row(

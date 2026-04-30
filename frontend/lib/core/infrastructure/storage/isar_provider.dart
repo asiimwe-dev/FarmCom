@@ -2,7 +2,7 @@
 
 // import 'package:isar/isar.dart';
 import 'package:path_provider/path_provider.dart';
-import 'package:farmcom/core/utils/logger.dart';
+import 'package:farmlink_ug/core/utils/logger.dart';
 import 'schemas/user_schema.dart';
 import 'schemas/post_schema.dart';
 import 'schemas/disease_schema.dart';

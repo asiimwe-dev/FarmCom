@@ -1,6 +1,6 @@
 import 'package:equatable/equatable.dart';
 
-/// User entity - represents a farmer in FarmCom
+/// User entity - represents a farmer in FarmLink UG
 class User extends Equatable {
   final String id;
   final String phone;

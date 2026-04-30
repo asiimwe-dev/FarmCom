@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:farmcom/core/theme/app_colors.dart';
-import 'package:farmcom/core/theme/theme_provider.dart';
-import 'package:farmcom/core/presentation/widgets/farmcom_card.dart';
+import 'package:farmlink_ug/core/theme/app_colors.dart';
+import 'package:farmlink_ug/core/theme/theme_provider.dart';
+import 'package:farmlink_ug/core/presentation/widgets/farmlink_card.dart';
 
 class SettingsPage extends ConsumerStatefulWidget {
   const SettingsPage({super.key});
@@ -39,7 +39,7 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
         children: [
           _buildSectionTitle('Appearance', isDark),
           const SizedBox(height: 12),
-          FarmComCard(
+          FarmLinkCard(
             padding: EdgeInsets.zero,
             child: Column(
               children: [
@@ -82,7 +82,7 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
           const SizedBox(height: 24),
           _buildSectionTitle('Notifications', isDark),
           const SizedBox(height: 12),
-          FarmComCard(
+          FarmLinkCard(
             padding: EdgeInsets.zero,
             child: Column(
               children: [
@@ -119,7 +119,7 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
           const SizedBox(height: 24),
           _buildSectionTitle('App Settings', isDark),
           const SizedBox(height: 12),
-          FarmComCard(
+          FarmLinkCard(
             padding: EdgeInsets.zero,
             child: Column(
               children: [
@@ -156,13 +156,13 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
           const SizedBox(height: 24),
           _buildSectionTitle('More', isDark),
           const SizedBox(height: 12),
-          FarmComCard(
+          FarmLinkCard(
             padding: EdgeInsets.zero,
             child: Column(
               children: [
                 _buildActionTile(
                   icon: Icons.info_outline_rounded,
-                  title: 'About FarmCom',
+                  title: 'About FarmLink UG',
                   onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => const AboutPage())),
                   isDark: isDark,
                 ),
@@ -186,7 +186,7 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
           const SizedBox(height: 40),
           Center(
             child: Text(
-              'FarmCom v1.0.0',
+              'FarmLink UG v1.0.0',
               style: TextStyle(color: AppColors.grey500, fontSize: 12, fontWeight: FontWeight.w600),
             ),
           ),
@@ -300,7 +300,7 @@ class AboutPage extends StatelessWidget {
     return Scaffold(
       backgroundColor: isDark ? const Color(0xFF121212) : Colors.white,
       appBar: AppBar(
-        title: const Text('About FarmCom', style: TextStyle(fontWeight: FontWeight.w900)),
+        title: const Text('About FarmLink UG', style: TextStyle(fontWeight: FontWeight.w900)),
         elevation: 0,
         leading: IconButton(
           onPressed: () => Navigator.pop(context),
@@ -321,7 +321,7 @@ class AboutPage extends StatelessWidget {
             ),
             const SizedBox(height: 24),
             const Text(
-              'FarmCom',
+              'FarmLink UG',
               style: TextStyle(fontSize: 28, fontWeight: FontWeight.w900, color: AppColors.primary),
             ),
             Text(
@@ -330,7 +330,7 @@ class AboutPage extends StatelessWidget {
             ),
             const SizedBox(height: 40),
             Text(
-              'FarmCom is a production-grade AgTech platform designed to bridge the rural agriculture extension gap in East Africa. Our mission is to empower smallholder farmers with AI-driven diagnostics, community-based knowledge sharing, and real-time market insights.',
+              'FarmLink UG is a production-grade AgTech platform designed to bridge the rural agriculture extension gap in East Africa. Our mission is to empower smallholder farmers with AI-driven diagnostics, community-based knowledge sharing, and real-time market insights.',
               textAlign: TextAlign.center,
               style: TextStyle(fontSize: 16, height: 1.6, fontWeight: FontWeight.w500, color: isDark ? Colors.white70 : AppColors.grey800),
             ),
@@ -344,7 +344,7 @@ class AboutPage extends StatelessWidget {
             const Divider(),
             const SizedBox(height: 20),
             Text(
-              '© 2026 FarmCom Technologies',
+              '© 2026 FarmLink UG Technologies',
               style: TextStyle(fontSize: 12, color: AppColors.grey400, fontWeight: FontWeight.w600),
             ),
           ],

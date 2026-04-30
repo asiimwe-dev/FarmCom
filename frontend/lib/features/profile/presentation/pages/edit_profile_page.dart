@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:farmcom/core/theme/app_colors.dart';
-import 'package:farmcom/core/presentation/widgets/farmcom_button.dart';
-import 'package:farmcom/core/presentation/widgets/farmcom_text_field.dart';
-import 'package:farmcom/features/auth/presentation/providers/auth_provider.dart';
+import 'package:farmlink_ug/core/theme/app_colors.dart';
+import 'package:farmlink_ug/core/presentation/widgets/farmlink_button.dart';
+import 'package:farmlink_ug/core/presentation/widgets/farmlink_text_field.dart';
+import 'package:farmlink_ug/features/auth/presentation/providers/auth_provider.dart';
 
 class EditProfilePage extends ConsumerStatefulWidget {
   const EditProfilePage({super.key});
@@ -31,7 +31,7 @@ class _EditProfilePageState extends ConsumerState<EditProfilePage> {
     final user = ref.read(authProvider).user;
     _nameController = TextEditingController(text: user?.name ?? 'Test Farmer');
     _phoneController = TextEditingController(text: user?.phone ?? '+256 701 234 567');
-    _emailController = TextEditingController(text: 'farmer@farmcom.ug');
+    _emailController = TextEditingController(text: 'farmer@farmlink_ug.ug');
     _bioController = TextEditingController(text: user?.bio ?? 'Passionate about sustainable coffee farming.');
     _regionController = TextEditingController(text: user?.region ?? 'Central Uganda');
     _customInterestController = TextEditingController();
@@ -132,15 +132,15 @@ class _EditProfilePageState extends ConsumerState<EditProfilePage> {
               ),
             ),
             const SizedBox(height: 32),
-            FarmComTextField(labelText: 'Full Name', controller: _nameController, prefixIcon: const Icon(Icons.person_outline_rounded)),
+            FarmLinkTextField(labelText: 'Full Name', controller: _nameController, prefixIcon: const Icon(Icons.person_outline_rounded)),
             const SizedBox(height: 20),
-            FarmComTextField(labelText: 'Phone Number', controller: _phoneController, prefixIcon: const Icon(Icons.phone_iphone_rounded), keyboardType: TextInputType.phone),
+            FarmLinkTextField(labelText: 'Phone Number', controller: _phoneController, prefixIcon: const Icon(Icons.phone_iphone_rounded), keyboardType: TextInputType.phone),
             const SizedBox(height: 20),
-            FarmComTextField(labelText: 'Email Address', controller: _emailController, prefixIcon: const Icon(Icons.email_outlined), keyboardType: TextInputType.emailAddress),
+            FarmLinkTextField(labelText: 'Email Address', controller: _emailController, prefixIcon: const Icon(Icons.email_outlined), keyboardType: TextInputType.emailAddress),
             const SizedBox(height: 20),
-            FarmComTextField(labelText: 'Bio', controller: _bioController, prefixIcon: const Icon(Icons.info_outline_rounded), maxLength: 150),
+            FarmLinkTextField(labelText: 'Bio', controller: _bioController, prefixIcon: const Icon(Icons.info_outline_rounded), maxLength: 150),
             const SizedBox(height: 20),
-            FarmComTextField(labelText: 'Region', controller: _regionController, prefixIcon: const Icon(Icons.location_on_outlined)),
+            FarmLinkTextField(labelText: 'Region', controller: _regionController, prefixIcon: const Icon(Icons.location_on_outlined)),
             const SizedBox(height: 32),
             Text('Farming Interests', style: TextStyle(fontSize: 16, fontWeight: FontWeight.w800, color: isDark ? Colors.white : AppColors.grey900)),
             const SizedBox(height: 12),
@@ -192,7 +192,7 @@ class _EditProfilePageState extends ConsumerState<EditProfilePage> {
             Row(
               children: [
                 Expanded(
-                  child: FarmComTextField(
+                  child: FarmLinkTextField(
                     labelText: 'Interest name',
                     controller: _customInterestController,
                     prefixIcon: const Icon(Icons.add_rounded),
@@ -212,7 +212,7 @@ class _EditProfilePageState extends ConsumerState<EditProfilePage> {
               ],
             ),
             const SizedBox(height: 40),
-            FarmComButton(label: 'Update Profile', onPressed: _saveProfile),
+            FarmLinkButton(label: 'Update Profile', onPressed: _saveProfile),
             const SizedBox(height: 20),
           ],
         ),

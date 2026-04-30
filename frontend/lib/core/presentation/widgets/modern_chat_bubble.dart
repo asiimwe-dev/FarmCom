@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:farmcom/core/theme/app_colors.dart';
+import 'package:farmlink_ug/core/theme/app_colors.dart';
 
 /// Modern chat bubble with enhanced styling and animations
 class ModernChatBubble extends StatelessWidget {

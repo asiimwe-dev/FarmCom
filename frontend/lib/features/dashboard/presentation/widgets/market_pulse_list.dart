@@ -56,7 +56,7 @@ class _MarketPriceLine extends StatelessWidget {
   Widget build(BuildContext context) {
     final trend = item['trend']!;
     
-    return FarmComCard(
+    return FarmLinkCard(
       padding: const EdgeInsets.all(16),
       child: Row(
         children: [

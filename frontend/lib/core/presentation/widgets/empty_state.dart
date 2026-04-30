@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:farmcom/core/theme/app_colors.dart';
-import 'package:farmcom/core/theme/app_typography.dart';
+import 'package:farmlink_ug/core/theme/app_colors.dart';
+import 'package:farmlink_ug/core/theme/app_typography.dart';
 
 class EmptyState extends StatelessWidget {
   final IconData icon;

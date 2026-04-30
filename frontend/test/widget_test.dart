@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:farmcom/main.dart';
+import 'package:farmlink_ug/main.dart';
 
 void main() {
   testWidgets('App starts and shows dashboard due to auto-login', (WidgetTester tester) async {

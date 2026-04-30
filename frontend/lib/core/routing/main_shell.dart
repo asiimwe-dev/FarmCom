@@ -3,8 +3,8 @@ import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'dart:ui';
 import 'package:go_router/go_router.dart';
-import 'package:farmcom/core/theme/app_colors.dart';
-import 'package:farmcom/core/theme/app_typography.dart';
+import 'package:farmlink_ug/core/theme/app_colors.dart';
+import 'package:farmlink_ug/core/theme/app_typography.dart';
 
 class MainShell extends ConsumerWidget {
   final StatefulNavigationShell navigationShell;
@@ -20,7 +20,7 @@ class MainShell extends ConsumerWidget {
       builder: (context) => AlertDialog(
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
         title: const Text(
-          'Exit FarmCom',
+          'Exit FarmLink UG',
           style: TextStyle(fontWeight: FontWeight.w900),
         ),
         content: const Text('Are you sure you want to exit the application?'),

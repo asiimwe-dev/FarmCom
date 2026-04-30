@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:farmcom/core/theme/app_colors.dart';
-import 'package:farmcom/core/presentation/widgets/farmcom_card.dart';
-import 'package:farmcom/core/presentation/widgets/farmcom_text_field.dart';
-import 'package:farmcom/core/presentation/widgets/offline_indicator.dart';
+import 'package:farmlink_ug/core/theme/app_colors.dart';
+import 'package:farmlink_ug/core/presentation/widgets/farmlink_card.dart';
+import 'package:farmlink_ug/core/presentation/widgets/farmlink_text_field.dart';
+import 'package:farmlink_ug/core/presentation/widgets/offline_indicator.dart';
 import 'community_chat_page.dart';
 
 class CommunityPage extends ConsumerWidget {
@@ -62,7 +62,7 @@ class CommunityPage extends ConsumerWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const FarmComTextField(
+                  const FarmLinkTextField(
                     hintText: 'Search communities (e.g. Coffee, Poultry)',
                     prefixIcon: Icon(Icons.search_rounded, color: AppColors.primary),
                   ),
@@ -250,7 +250,7 @@ class _ForumTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.only(bottom: 12),
-      child: FarmComCard(
+      child: FarmLinkCard(
         padding: const EdgeInsets.all(16),
         onTap: onTap,
         child: Row(

@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import 'package:farmcom/core/theme/app_colors.dart';
-import 'package:farmcom/core/theme/app_typography.dart';
-import 'package:farmcom/core/routing/app_routes.dart';
-import 'package:farmcom/features/auth/presentation/providers/auth_provider.dart';
+import 'package:farmlink_ug/core/theme/app_colors.dart';
+import 'package:farmlink_ug/core/theme/app_typography.dart';
+import 'package:farmlink_ug/core/routing/app_routes.dart';
+import 'package:farmlink_ug/features/auth/presentation/providers/auth_provider.dart';
 
 class AppDrawer extends ConsumerWidget {
   const AppDrawer({super.key});
@@ -109,7 +109,7 @@ class AppDrawer extends ConsumerWidget {
                 ),
                 _DrawerItem(
                   icon: Icons.info_outline_rounded,
-                  label: 'About FarmCom',
+                  label: 'About FarmLink UG',
                   onTap: () {
                     Navigator.pop(context);
                     _showAboutDialog(context, isDark);
@@ -167,7 +167,7 @@ class AppDrawer extends ConsumerWidget {
             const SizedBox(height: 12),
             _HelpItem(
               title: 'Offline Mode',
-              description: 'Use FarmCom without internet connection',
+              description: 'Use FarmLink UG without internet connection',
               isDark: isDark,
             ),
             const SizedBox(height: 12),
@@ -195,7 +195,7 @@ class AppDrawer extends ConsumerWidget {
             mainAxisSize: MainAxisSize.min,
             children: [
               Text(
-                'About FarmCom',
+                'About FarmLink UG',
                 style: AppTypography.headlineMedium.copyWith(
                   color: isDark ? Colors.white : AppColors.grey900,
                 ),
@@ -216,7 +216,7 @@ class AppDrawer extends ConsumerWidget {
                   borderRadius: BorderRadius.circular(12),
                 ),
                 child: Text(
-                  'FarmCom is an offline-first mobile platform bridging the rural agriculture extension gap in East Africa. Farmers get access to AI-powered disease diagnostics, peer communities, and expert consultations.',
+                  'FarmLink UG is an offline-first mobile platform bridging the rural agriculture extension gap in East Africa. Farmers get access to AI-powered disease diagnostics, peer communities, and expert consultations.',
                   style: TextStyle(
                     color: isDark ? Colors.white70 : AppColors.grey700,
                     fontSize: 13,
@@ -256,7 +256,7 @@ class AppDrawer extends ConsumerWidget {
       builder: (context) => AlertDialog(
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
         title: const Text('Logout'),
-        content: const Text('Are you sure you want to logout from FarmCom?'),
+        content: const Text('Are you sure you want to logout from FarmLink UG?'),
         actions: [
           TextButton(
             onPressed: () => Navigator.pop(context),

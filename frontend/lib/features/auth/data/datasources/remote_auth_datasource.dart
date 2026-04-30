@@ -1,5 +1,5 @@
 import '../models/user_model.dart';
-import 'package:farmcom/core/domain/exceptions/app_exception.dart';
+import 'package:farmlink_ug/core/domain/exceptions/app_exception.dart';
 
 /// Remote data source - Supabase OTP authentication
 abstract class IRemoteAuthDataSource {

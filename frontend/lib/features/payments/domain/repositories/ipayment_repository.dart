@@ -1,1 +1,1 @@
-export 'package:farmcom/core/domain/repositories/ipayment_repository.dart';
+export 'package:farmlink_ug/core/domain/repositories/ipayment_repository.dart';

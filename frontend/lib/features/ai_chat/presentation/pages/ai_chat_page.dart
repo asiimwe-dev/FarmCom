@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:farmcom/core/theme/app_colors.dart';
-import 'package:farmcom/core/presentation/widgets/farmcom_card.dart';
-import 'package:farmcom/core/presentation/widgets/modern_chat_bubble.dart';
-import 'package:farmcom/core/presentation/widgets/modern_chat_input.dart';
+import 'package:farmlink_ug/core/theme/app_colors.dart';
+import 'package:farmlink_ug/core/presentation/widgets/farmlink_card.dart';
+import 'package:farmlink_ug/core/presentation/widgets/modern_chat_bubble.dart';
+import 'package:farmlink_ug/core/presentation/widgets/modern_chat_input.dart';
 
 class AIChatPage extends ConsumerStatefulWidget {
   const AIChatPage({super.key});
@@ -17,7 +17,7 @@ class _AIChatPageState extends ConsumerState<AIChatPage> {
   final _scrollController = ScrollController();
   final List<ChatMessage> _messages = [
     ChatMessage(
-      text: 'Hello! I\'m your FarmCom AI Assistant. How can I help you with your farm today?',
+      text: 'Hello! I\'m your FarmLink UG AI Assistant. How can I help you with your farm today?',
       isUser: false,
       timestamp: DateTime.now(),
     ),

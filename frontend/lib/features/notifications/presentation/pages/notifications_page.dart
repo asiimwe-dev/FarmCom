@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:farmcom/core/theme/app_colors.dart';
-import 'package:farmcom/core/presentation/widgets/farmcom_card.dart';
-import 'package:farmcom/core/routing/app_routes.dart';
+import 'package:farmlink_ug/core/theme/app_colors.dart';
+import 'package:farmlink_ug/core/presentation/widgets/farmlink_card.dart';
+import 'package:farmlink_ug/core/routing/app_routes.dart';
 
 class NotificationsPage extends StatefulWidget {
   const NotificationsPage({super.key});
@@ -173,7 +173,7 @@ class _NotificationsPageState extends State<NotificationsPage> {
                   ),
                   child: GestureDetector(
                     onTap: notification['isRead'] ? null : () => _markAsRead(notification['id']),
-                    child: FarmComCard(
+                    child: FarmLinkCard(
                       margin: const EdgeInsets.only(bottom: 12),
                       padding: const EdgeInsets.all(16),
                       child: Row(

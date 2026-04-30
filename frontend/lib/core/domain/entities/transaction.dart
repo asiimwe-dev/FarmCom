@@ -1,6 +1,6 @@
 import 'package:equatable/equatable.dart';
 
-/// Payment transaction entity - represents money movement in FarmCom
+/// Payment transaction entity - represents money movement in FarmLink UG
 class Transaction extends Equatable {
   final String id;
   final String userId;

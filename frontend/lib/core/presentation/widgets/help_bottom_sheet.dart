@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:farmcom/core/theme/app_colors.dart';
-import 'package:farmcom/core/theme/app_typography.dart';
+import 'package:farmlink_ug/core/theme/app_colors.dart';
+import 'package:farmlink_ug/core/theme/app_typography.dart';
 
 class HelpBottomSheet extends StatelessWidget {
   const HelpBottomSheet({super.key});
@@ -54,15 +54,15 @@ class HelpBottomSheet extends StatelessWidget {
                   icon: Icons.question_answer_rounded,
                   title: 'FAQ',
                   description: 'Find answers to common questions',
-                  onTap: () => _launchURL('https://farmcom.app/faq'),
+                  onTap: () => _launchURL('https://farmlink_ug.app/faq'),
                 ),
                 const SizedBox(height: 16),
 
                 _HelpItem(
                   icon: Icons.library_books_rounded,
                   title: 'User Guide',
-                  description: 'Learn how to use FarmCom',
-                  onTap: () => _launchURL('https://farmcom.app/guide'),
+                  description: 'Learn how to use FarmLink UG',
+                  onTap: () => _launchURL('https://farmlink_ug.app/guide'),
                 ),
                 const SizedBox(height: 16),
 
@@ -70,7 +70,7 @@ class HelpBottomSheet extends StatelessWidget {
                   icon: Icons.bug_report_rounded,
                   title: 'Report Issue',
                   description: 'Report bugs or suggest improvements',
-                  onTap: () => _launchURL('https://farmcom.app/support'),
+                  onTap: () => _launchURL('https://farmlink_ug.app/support'),
                 ),
                 const SizedBox(height: 16),
 
@@ -111,9 +111,9 @@ class HelpBottomSheet extends StatelessWidget {
   void _launchEmail() async {
     final Uri emailLaunchUri = Uri(
       scheme: 'mailto',
-      path: 'support@farmcom.app',
+      path: 'support@farmlink_ug.app',
       queryParameters: {
-        'subject': 'FarmCom Support Request',
+        'subject': 'FarmLink UG Support Request',
       },
     );
     if (await canLaunchUrl(emailLaunchUri)) {

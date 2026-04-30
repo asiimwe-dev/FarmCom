@@ -1,6 +1,6 @@
-import 'package:farmcom/core/domain/repositories/ipayment_repository.dart';
-import 'package:farmcom/core/domain/entities/transaction.dart';
-import 'package:farmcom/core/utils/logger.dart';
+import 'package:farmlink_ug/core/domain/repositories/ipayment_repository.dart';
+import 'package:farmlink_ug/core/domain/entities/transaction.dart';
+import 'package:farmlink_ug/core/utils/logger.dart';
 
 class PaymentRepository implements IPaymentRepository {
   @override

@@ -5,7 +5,7 @@ class AIQuickScanButton extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return FarmComCard(
+    return FarmLinkCard(
       padding: EdgeInsets.zero,
       color: AppColors.primary,
       onTap: () {

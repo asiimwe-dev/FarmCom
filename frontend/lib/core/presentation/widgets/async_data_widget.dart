@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:farmcom/core/presentation/widgets/state_widgets.dart';
+import 'package:farmlink_ug/core/presentation/widgets/state_widgets.dart';
 
 typedef AsyncWidgetBuilder<T> = Widget Function(BuildContext context, T data);
 typedef AsyncErrorBuilder = Widget Function(

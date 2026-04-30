@@ -50,7 +50,7 @@ class _CommunityCard extends StatelessWidget {
     return Container(
       width: 130,
       margin: const EdgeInsets.only(right: 16, bottom: 8, top: 4),
-      child: FarmComCard(
+      child: FarmLinkCard(
         padding: EdgeInsets.zero,
         color: isDark ? const Color(0xFF1E1E1E) : Colors.white,
         border: !isDark

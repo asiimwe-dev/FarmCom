@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-/// FarmCom Typography - Premium font family optimized for iOS feel
+/// FarmLink UG Typography - Premium font family optimized for iOS feel
 /// Uses system fonts for professional appearance across all platforms
 class AppTypography {
   static const double _scale = 1.15;

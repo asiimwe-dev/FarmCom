@@ -1,8 +1,8 @@
 import 'dart:async';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:farmcom/core/domain/entities/user.dart';
-import 'package:farmcom/core/domain/exceptions/app_exception.dart';
+import 'package:farmlink_ug/core/domain/entities/user.dart';
+import 'package:farmlink_ug/core/domain/exceptions/app_exception.dart';
 import '../../domain/usecases/send_otp_usecase.dart';
 import '../../domain/usecases/verify_otp_usecase.dart';
 import '../../domain/usecases/logout_usecase.dart';

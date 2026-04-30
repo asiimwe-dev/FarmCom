@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:farmcom/features/auth/presentation/providers/auth_provider.dart';
-import 'package:farmcom/features/settings/presentation/pages/settings_page.dart';
-import 'package:farmcom/features/profile/presentation/pages/edit_profile_page.dart';
-import 'package:farmcom/core/theme/app_colors.dart';
-import 'package:farmcom/core/presentation/widgets/farmcom_card.dart';
-import 'package:farmcom/core/presentation/widgets/offline_indicator.dart';
+import 'package:farmlink_ug/features/auth/presentation/providers/auth_provider.dart';
+import 'package:farmlink_ug/features/settings/presentation/pages/settings_page.dart';
+import 'package:farmlink_ug/features/profile/presentation/pages/edit_profile_page.dart';
+import 'package:farmlink_ug/core/theme/app_colors.dart';
+import 'package:farmlink_ug/core/presentation/widgets/farmlink_card.dart';
+import 'package:farmlink_ug/core/presentation/widgets/offline_indicator.dart';
 
 class UserProfilePage extends ConsumerStatefulWidget {
   const UserProfilePage({super.key});
@@ -125,7 +125,7 @@ class _UserProfilePageState extends ConsumerState<UserProfilePage> {
                 children: [
                   _buildSectionTitle('About Me', isDark),
                   const SizedBox(height: 12),
-                  FarmComCard(
+                  FarmLinkCard(
                     child: Column(
                       children: [
                         _buildProfileStaticItem(Icons.info_outline_rounded, 'Bio', user?.bio ?? 'Passionate about sustainable coffee farming.'),
@@ -146,7 +146,7 @@ class _UserProfilePageState extends ConsumerState<UserProfilePage> {
                   const SizedBox(height: 32),
                   _buildSectionTitle('Account Settings', isDark),
                   const SizedBox(height: 12),
-                  FarmComCard(
+                  FarmLinkCard(
                     padding: EdgeInsets.zero,
                     child: Column(
                       children: [
@@ -204,7 +204,7 @@ class _UserProfilePageState extends ConsumerState<UserProfilePage> {
   }
 
   Widget _buildExpandableInterests(List<String> interests, bool isDark) {
-    return FarmComCard(
+    return FarmLinkCard(
       padding: EdgeInsets.zero,
       child: Theme(
         data: Theme.of(context).copyWith(dividerColor: Colors.transparent),
@@ -355,7 +355,7 @@ class _UserProfilePageState extends ConsumerState<UserProfilePage> {
             metrics.length,
             (index) {
               final metric = metrics[index];
-              return FarmComCard(
+              return FarmLinkCard(
                 padding: const EdgeInsets.all(16),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -406,7 +406,7 @@ class _UserProfilePageState extends ConsumerState<UserProfilePage> {
           ),
         ),
         const SizedBox(height: 16),
-        FarmComCard(
+        FarmLinkCard(
           padding: const EdgeInsets.all(16),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,

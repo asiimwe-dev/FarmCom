@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'dart:io';
-import 'package:farmcom/core/theme/app_colors.dart';
-import 'package:farmcom/core/presentation/widgets/farmcom_card.dart';
-import 'package:farmcom/core/presentation/widgets/farmcom_button.dart';
+import 'package:farmlink_ug/core/theme/app_colors.dart';
+import 'package:farmlink_ug/core/presentation/widgets/farmlink_card.dart';
+import 'package:farmlink_ug/core/presentation/widgets/farmlink_button.dart';
 
 class CameraDiagnosticPage extends StatefulWidget {
   const CameraDiagnosticPage({super.key});
@@ -150,7 +150,7 @@ class _CameraDiagnosticPageState extends State<CameraDiagnosticPage> {
             _buildRecommendationItem('Ensure proper plant spacing for air flow'),
             _buildRecommendationItem('Monitor soil moisture levels'),
             const SizedBox(height: 40),
-            FarmComButton(
+            FarmLinkButton(
               label: 'Save to Farm Records',
               onPressed: () {
                 Navigator.pop(context);
@@ -161,9 +161,9 @@ class _CameraDiagnosticPageState extends State<CameraDiagnosticPage> {
               icon: Icons.save_rounded,
             ),
             const SizedBox(height: 12),
-            FarmComButton(
+            FarmLinkButton(
               label: 'Talk to Expert',
-              variant: FarmComButtonVariant.outline,
+              variant: FarmLinkButtonVariant.outline,
               onPressed: () {
                 Navigator.pop(context);
               },
@@ -211,7 +211,7 @@ class _CameraDiagnosticPageState extends State<CameraDiagnosticPage> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             if (_selectedImage != null)
-              FarmComCard(
+              FarmLinkCard(
                 padding: EdgeInsets.zero,
                 child: AspectRatio(
                   aspectRatio: 1,
@@ -225,7 +225,7 @@ class _CameraDiagnosticPageState extends State<CameraDiagnosticPage> {
                 ),
               )
             else
-              FarmComCard(
+              FarmLinkCard(
                 padding: const EdgeInsets.all(40),
                 child: Center(
                   child: Column(
@@ -258,7 +258,7 @@ class _CameraDiagnosticPageState extends State<CameraDiagnosticPage> {
             Row(
               children: [
                 Expanded(
-                  child: FarmComButton(
+                  child: FarmLinkButton(
                     label: 'Take Photo',
                     onPressed: _isAnalyzing ? null : _captureImage,
                     icon: Icons.camera_rounded,
@@ -266,9 +266,9 @@ class _CameraDiagnosticPageState extends State<CameraDiagnosticPage> {
                 ),
                 const SizedBox(width: 16),
                 Expanded(
-                  child: FarmComButton(
+                  child: FarmLinkButton(
                     label: 'Gallery',
-                    variant: FarmComButtonVariant.outline,
+                    variant: FarmLinkButtonVariant.outline,
                     onPressed: _isAnalyzing ? null : _pickImage,
                     icon: Icons.photo_library_rounded,
                   ),

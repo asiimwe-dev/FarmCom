@@ -1,4 +1,4 @@
-/// Base exception for all FarmCom errors
+/// Base exception for all FarmLink UG errors
 abstract class AppException implements Exception {
   final String message;
   final String? code;

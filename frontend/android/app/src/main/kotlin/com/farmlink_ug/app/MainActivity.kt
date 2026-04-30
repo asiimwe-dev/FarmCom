@@ -1,4 +1,4 @@
-package com.farmcom.app
+package com.farmlink_ug.app
 
 import io.flutter.embedding.android.FlutterActivity
 

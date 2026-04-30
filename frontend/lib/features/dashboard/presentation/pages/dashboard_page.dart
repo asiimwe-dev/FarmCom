@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import 'package:farmcom/core/infrastructure/connectivity/connectivity_provider.dart';
-import 'package:farmcom/features/diagnostics/presentation/pages/camera_diagnostic_page.dart';
-import 'package:farmcom/features/ai_chat/presentation/pages/ai_chat_page.dart';
-import 'package:farmcom/features/community/presentation/pages/community_chat_page.dart';
-import 'package:farmcom/features/auth/presentation/providers/auth_provider.dart';
-import 'package:farmcom/core/routing/app_routes.dart';
-import 'package:farmcom/core/theme/app_colors.dart';
-import 'package:farmcom/core/theme/app_typography.dart';
-import 'package:farmcom/core/presentation/widgets/farmcom_card.dart';
-import 'package:farmcom/core/presentation/widgets/farmcom_button.dart';
-import 'package:farmcom/core/presentation/widgets/offline_indicator.dart';
+import 'package:farmlink_ug/core/infrastructure/connectivity/connectivity_provider.dart';
+import 'package:farmlink_ug/features/diagnostics/presentation/pages/camera_diagnostic_page.dart';
+import 'package:farmlink_ug/features/ai_chat/presentation/pages/ai_chat_page.dart';
+import 'package:farmlink_ug/features/community/presentation/pages/community_chat_page.dart';
+import 'package:farmlink_ug/features/auth/presentation/providers/auth_provider.dart';
+import 'package:farmlink_ug/core/routing/app_routes.dart';
+import 'package:farmlink_ug/core/theme/app_colors.dart';
+import 'package:farmlink_ug/core/theme/app_typography.dart';
+import 'package:farmlink_ug/core/presentation/widgets/farmlink_card.dart';
+import 'package:farmlink_ug/core/presentation/widgets/farmlink_button.dart';
+import 'package:farmlink_ug/core/presentation/widgets/offline_indicator.dart';
 
 part '../widgets/niche_communities_list.dart';
 part '../widgets/ai_quick_scan_button.dart';
@@ -335,7 +335,7 @@ class DashboardPage extends ConsumerWidget {
         ),
         const SizedBox(width: 10),
         const Text(
-          'FarmCom',
+          'FarmLink UG',
           style: TextStyle(
             fontSize: 18,
             fontWeight: FontWeight.w900,
@@ -396,7 +396,7 @@ class _ExpertAccessCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
 
-    return FarmComCard(
+    return FarmLinkCard(
       variant: CardVariant.elevated,
       padding: const EdgeInsets.all(20),
       child: Column(
@@ -435,11 +435,11 @@ class _ExpertAccessCard extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 16),
-          FarmComButton(
+          FarmLinkButton(
             label: 'Browse Experts',
             onPressed: () {},
-            variant: FarmComButtonVariant.primary,
-            size: FarmComButtonSize.medium,
+            variant: FarmLinkButtonVariant.primary,
+            size: FarmLinkButtonSize.medium,
           ),
         ],
       ),

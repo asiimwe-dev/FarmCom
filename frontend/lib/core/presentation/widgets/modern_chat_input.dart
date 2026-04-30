@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:farmcom/core/theme/app_colors.dart';
+import 'package:farmlink_ug/core/theme/app_colors.dart';
 
 /// Modern chat input area with enhanced styling and features
 class ModernChatInputArea extends StatefulWidget {

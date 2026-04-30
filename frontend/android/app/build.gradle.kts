@@ -6,7 +6,7 @@ plugins {
 }
 
 android {
-    namespace = "com.farmcom.app"
+    namespace = "com.farmlink_ug.app"
     compileSdk = flutter.compileSdkVersion
     ndkVersion = flutter.ndkVersion
 
@@ -20,7 +20,7 @@ android {
     }
 
     defaultConfig {
-        applicationId = "com.farmcom.app"
+        applicationId = "com.farmlink_ug.app"
         minSdk = flutter.minSdkVersion
         targetSdk = flutter.targetSdkVersion
         versionCode = flutter.versionCode

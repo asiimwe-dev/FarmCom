@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'app_colors.dart';
 import 'app_typography.dart';
 
-/// FarmCom Material 3 Professional Theme
+/// FarmLink UG Material 3 Professional Theme
 /// Implements comprehensive design system with proper dark mode support
 class AppTheme {
   static ThemeData lightTheme(double multiplier) {

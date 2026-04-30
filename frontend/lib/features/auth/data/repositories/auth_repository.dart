@@ -2,8 +2,8 @@ import '../models/user_model.dart';
 import '../datasources/remote_auth_datasource.dart';
 import '../datasources/local_auth_datasource.dart';
 import '../../domain/repositories/iauth_repository.dart';
-import 'package:farmcom/core/domain/entities/user.dart';
-import 'package:farmcom/core/domain/exceptions/app_exception.dart';
+import 'package:farmlink_ug/core/domain/entities/user.dart';
+import 'package:farmlink_ug/core/domain/exceptions/app_exception.dart';
 
 /// Auth repository - implements offline-first pattern
 class AuthRepository implements IAuthRepository {

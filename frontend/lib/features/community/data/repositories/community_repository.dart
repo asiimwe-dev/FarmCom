@@ -1,5 +1,5 @@
-import 'package:farmcom/core/domain/repositories/icommunity_repository.dart';
-import 'package:farmcom/core/utils/logger.dart';
+import 'package:farmlink_ug/core/domain/repositories/icommunity_repository.dart';
+import 'package:farmlink_ug/core/utils/logger.dart';
 
 class CommunityRepository implements ICommunityRepository {
   @override

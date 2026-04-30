@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:farmcom/core/infrastructure/connectivity/connectivity_provider.dart';
-import 'package:farmcom/core/theme/app_colors.dart';
+import 'package:farmlink_ug/core/infrastructure/connectivity/connectivity_provider.dart';
+import 'package:farmlink_ug/core/theme/app_colors.dart';
 
 class OfflineIndicator extends ConsumerWidget {
   const OfflineIndicator({super.key});

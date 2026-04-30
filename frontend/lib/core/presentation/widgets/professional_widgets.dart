@@ -19,6 +19,6 @@ export 'accessibility_helpers.dart';
 // Existing Widgets (for reference)
 // export 'app_drawer.dart';
 // export 'empty_state.dart';
-// export 'farmcom_button.dart';
-// export 'farmcom_card.dart';
-// export 'farmcom_text_field.dart';
+// export 'farmlink_button.dart';
+// export 'farmlink_card.dart';
+// export 'farmlink_text_field.dart';

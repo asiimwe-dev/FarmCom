@@ -1,4 +1,4 @@
-/// API Endpoints for FarmCom
+/// API Endpoints for FarmLink UG
 class ApiEndpoints {
   // Supabase
   static const String supabaseUrl = 'YOUR_SUPABASE_URL';

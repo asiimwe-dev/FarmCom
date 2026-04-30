@@ -1,4 +1,4 @@
-import 'package:farmcom/core/domain/entities/user.dart';
+import 'package:farmlink_ug/core/domain/entities/user.dart';
 
 /// User DTO - JSON serializable
 class UserModel extends User {

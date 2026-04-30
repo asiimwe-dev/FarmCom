@@ -1,6 +1,6 @@
-# FarmCom Architecture & Development Guide
+# FarmLink UG Architecture & Development Guide
 
-**Comprehensive Technical Documentation for the FarmCom Platform**
+**Comprehensive Technical Documentation for the FarmLink UG Platform**
 
 ---
 
@@ -23,7 +23,7 @@
 
 ### Design Philosophy
 
-FarmCom uses **Clean Architecture + Domain-Driven Design (DDD)** with a strict **Feature-First** modular organization. This approach ensures:
+FarmLink UG uses **Clean Architecture + Domain-Driven Design (DDD)** with a strict **Feature-First** modular organization. This approach ensures:
 
 - **Zero coupling** between features (each feature is independently deployable)
 - **Testability** at every architectural layer (domain, data, presentation)
@@ -64,7 +64,7 @@ FarmCom uses **Clean Architecture + Domain-Driven Design (DDD)** with a strict *
 ### Root Directory Layout
 
 ```
-FarmCom/
+FarmLink UG/
 ├── frontend/                          # Flutter mobile application
 │   ├── lib/
 │   │   ├── core/                     # Shared infrastructure
@@ -408,8 +408,8 @@ Xcode: 14.0+ (macOS only, for iOS builds)
 
 1. **Clone repository**
    ```bash
-   git clone https://github.com/asiimwe-dev/FarmCom.git
-   cd FarmCom/frontend
+   git clone https://github.com/asiimwe-dev/FarmLink UG.git
+   cd FarmLink UG/frontend
    ```
 
 2. **Check Flutter setup**
@@ -1285,4 +1285,4 @@ When adding a new feature (e.g., `marketplace/`):
 
 **Last Updated:** April 2026  
 **Version:** 1.0  
-**Maintainer:** FarmCom Development Team
+**Maintainer:** FarmLink UG Development Team

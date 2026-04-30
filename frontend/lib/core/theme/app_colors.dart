@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-/// FarmCom Professional Color System
+/// FarmLink UG Professional Color System
 /// Implements Material 3 with comprehensive dark mode support
 class AppColors {
   // ============ Primary: Farm Green ============

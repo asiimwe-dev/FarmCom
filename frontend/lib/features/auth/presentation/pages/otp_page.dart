@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:farmcom/core/constants/app_strings.dart';
-import 'package:farmcom/core/theme/app_colors.dart';
-import 'package:farmcom/core/presentation/widgets/farmcom_button.dart';
-import 'package:farmcom/core/presentation/widgets/farmcom_text_field.dart';
+import 'package:farmlink_ug/core/constants/app_strings.dart';
+import 'package:farmlink_ug/core/theme/app_colors.dart';
+import 'package:farmlink_ug/core/presentation/widgets/farmlink_button.dart';
+import 'package:farmlink_ug/core/presentation/widgets/farmlink_text_field.dart';
 import '../providers/auth_provider.dart';
 
 class OTPPage extends ConsumerStatefulWidget {
@@ -134,7 +134,7 @@ class _OTPPageState extends ConsumerState<OTPPage> {
           ),
           const SizedBox(height: 32),
           Text(
-            'Welcome to FarmCom',
+            'Welcome to FarmLink UG',
             style: Theme.of(context).textTheme.headlineMedium?.copyWith(
                   fontWeight: FontWeight.w900,
                   color: AppColors.grey900,
@@ -149,7 +149,7 @@ class _OTPPageState extends ConsumerState<OTPPage> {
                 ),
           ),
           const SizedBox(height: 48),
-          FarmComTextField(
+          FarmLinkTextField(
             controller: phoneController,
             labelText: AppStrings.enterPhone,
             hintText: AppStrings.phoneHint,
@@ -158,7 +158,7 @@ class _OTPPageState extends ConsumerState<OTPPage> {
             enabled: !authState.isLoading,
           ),
           const SizedBox(height: 32),
-          FarmComButton(
+          FarmLinkButton(
             label: AppStrings.sendOTP,
             onPressed: _sendOTP,
             isLoading: authState.isLoading,
@@ -228,7 +228,7 @@ class _OTPPageState extends ConsumerState<OTPPage> {
             ),
           ),
           const SizedBox(height: 48),
-          FarmComTextField(
+          FarmLinkTextField(
             controller: otpController,
             textAlign: TextAlign.center,
             style: const TextStyle(
@@ -242,7 +242,7 @@ class _OTPPageState extends ConsumerState<OTPPage> {
             enabled: !authState.isLoading,
           ),
           const SizedBox(height: 32),
-          FarmComButton(
+          FarmLinkButton(
             label: AppStrings.confirm,
             onPressed: _verifyOTP,
             isLoading: authState.isLoading,

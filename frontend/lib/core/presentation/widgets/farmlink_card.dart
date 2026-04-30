@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:farmcom/core/theme/app_colors.dart';
+import 'package:farmlink_ug/core/theme/app_colors.dart';
 
 /// Card variant styles
 enum CardVariant {
@@ -17,9 +17,9 @@ enum CardVariant {
   tonal,
 }
 
-/// Professional FarmComCard component with multiple variants
+/// Professional FarmLinkCard component with multiple variants
 /// Supports light and dark modes seamlessly
-class FarmComCard extends StatefulWidget {
+class FarmLinkCard extends StatefulWidget {
   final Widget child;
   final EdgeInsetsGeometry? padding;
   final EdgeInsetsGeometry? margin;
@@ -32,7 +32,7 @@ class FarmComCard extends StatefulWidget {
   final bool isLoading;
   final bool enabled;
 
-  const FarmComCard({
+  const FarmLinkCard({
     super.key,
     required this.child,
     this.padding,
@@ -48,10 +48,10 @@ class FarmComCard extends StatefulWidget {
   });
 
   @override
-  State<FarmComCard> createState() => _FarmComCardState();
+  State<FarmLinkCard> createState() => _FarmLinkCardState();
 }
 
-class _FarmComCardState extends State<FarmComCard>
+class _FarmLinkCardState extends State<FarmLinkCard>
     with SingleTickerProviderStateMixin {
   late AnimationController _hoverController;
   bool _isHovered = false;

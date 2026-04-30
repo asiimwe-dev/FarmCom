@@ -1,5 +1,5 @@
-import 'package:farmcom/core/domain/entities/user.dart';
-import 'package:farmcom/core/domain/exceptions/app_exception.dart';
+import 'package:farmlink_ug/core/domain/entities/user.dart';
+import 'package:farmlink_ug/core/domain/exceptions/app_exception.dart';
 import '../repositories/iauth_repository.dart';
 
 /// Auth use case: Verify OTP and log in

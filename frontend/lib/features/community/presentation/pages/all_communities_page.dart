@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:farmcom/core/theme/app_colors.dart';
-import 'package:farmcom/core/presentation/widgets/farmcom_card.dart';
-import 'package:farmcom/core/presentation/widgets/farmcom_text_field.dart';
+import 'package:farmlink_ug/core/theme/app_colors.dart';
+import 'package:farmlink_ug/core/presentation/widgets/farmlink_card.dart';
+import 'package:farmlink_ug/core/presentation/widgets/farmlink_text_field.dart';
 import 'community_chat_page.dart';
 
 class AllCommunitiesPage extends StatelessWidget {
@@ -24,7 +24,7 @@ class AllCommunitiesPage extends StatelessWidget {
         children: [
           const Padding(
             padding: EdgeInsets.all(20),
-            child: FarmComTextField(
+            child: FarmLinkTextField(
               hintText: 'Search for a niche (e.g. Pigs, Rice)',
               prefixIcon: Icon(Icons.search_rounded, color: AppColors.primary),
             ),
@@ -65,7 +65,7 @@ class AllCommunitiesPage extends StatelessWidget {
 
     return Padding(
       padding: const EdgeInsets.only(bottom: 12),
-      child: FarmComCard(
+      child: FarmLinkCard(
         onTap: () {
           Navigator.of(context).push(
             MaterialPageRoute(

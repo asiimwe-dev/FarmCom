@@ -2,9 +2,9 @@
 
 // import 'package:isar/isar.dart';
 import '../models/user_model.dart';
-import 'package:farmcom/core/infrastructure/storage/isar_provider.dart';
-import 'package:farmcom/core/infrastructure/storage/schemas/user_schema.dart';
-import 'package:farmcom/core/domain/exceptions/app_exception.dart';
+import 'package:farmlink_ug/core/infrastructure/storage/isar_provider.dart';
+import 'package:farmlink_ug/core/infrastructure/storage/schemas/user_schema.dart';
+import 'package:farmlink_ug/core/domain/exceptions/app_exception.dart';
 
 /// Local data source - Isar database (Stub: Disabled for AGP 8.x compatibility)
 abstract class ILocalAuthDataSource {

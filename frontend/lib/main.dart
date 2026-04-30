@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-// import 'package:farmcom/core/infrastructure/storage/isar_provider.dart';  // Disabled for AGP 8.x compatibility
-import 'package:farmcom/core/routing/router_provider.dart';
-import 'package:farmcom/core/theme/app_theme.dart';
-import 'package:farmcom/core/theme/theme_provider.dart';
-import 'package:farmcom/core/constants/app_strings.dart';
-import 'package:farmcom/core/utils/logger.dart';
+// import 'package:farmlink_ug/core/infrastructure/storage/isar_provider.dart';  // Disabled for AGP 8.x compatibility
+import 'package:farmlink_ug/core/routing/router_provider.dart';
+import 'package:farmlink_ug/core/theme/app_theme.dart';
+import 'package:farmlink_ug/core/theme/theme_provider.dart';
+import 'package:farmlink_ug/core/constants/app_strings.dart';
+import 'package:farmlink_ug/core/utils/logger.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -13,7 +13,7 @@ void main() async {
   // Initialize Isar (Stubbed)
   // await initializeIsar();
   
-  Logger.i('🚀 Starting FarmCom Mobile...');
+  Logger.i('🚀 Starting FarmLink UG Mobile...');
   
   runApp(
     const ProviderScope(

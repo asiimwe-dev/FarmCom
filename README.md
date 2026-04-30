@@ -1,4 +1,4 @@
-# FarmCom 🌱
+# FarmLink UG 🌱
 
 **Offline-First Mobile Platform Bridging the Rural Agriculture Extension Gap in East Africa**
 
@@ -20,7 +20,7 @@ In Uganda, **one agricultural extension worker serves over 2,500 farmers**. Crit
 
 ## The Solution
 
-**FarmCom** is a production-ready mobile application that enables reliable agricultural knowledge-sharing and expert consultation in low-connectivity environments. The platform operates entirely offline while intelligently syncing data when connectivity is available.
+**FarmLink UG** is a production-ready mobile application that enables reliable agricultural knowledge-sharing and expert consultation in low-connectivity environments. The platform operates entirely offline while intelligently syncing data when connectivity is available.
 
 ### How It Works
 
@@ -93,7 +93,7 @@ Aggregate anonymized data from thousands of farmers to create real-time crop hea
 5. **Micro-Loan Interest** — Interest income from micro-lending powered by farmer credit scores (Phase 3)
 
 ### Day-One Viability
-FarmCom is designed to generate revenue from launch—not dependent on future features or external funding.
+FarmLink UG is designed to generate revenue from launch—not dependent on future features or external funding.
 
 ---
 
@@ -115,8 +115,8 @@ For developers: See [ARCHITECTURE.md](ARCHITECTURE.md) for complete development 
 
 **Quick Start:**
 ```bash
-git clone https://github.com/asiimwe-dev/FarmCom.git
-cd FarmCom/frontend
+git clone https://github.com/asiimwe-dev/FarmLink-UG.git
+cd FarmLink UG/frontend
 flutter pub get
 flutter run
 ```
@@ -125,7 +125,7 @@ flutter run
 
 ## Team & Ownership
 
-**FarmCom** is developed by a small team of full-stack engineers focused on production-quality code and sustainable impact in East African agriculture.
+**FarmLink UG** is developed by a small team of full-stack engineers focused on production-quality code and sustainable impact in East African agriculture.
 
 **Core Principles:**
 - Production-ready code (no shortcuts, no tech debt)
@@ -162,7 +162,7 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) for contribution guidelines.
 
 **Apache License 2.0**
 
-Copyright © 2026 FarmCom Contributors
+Copyright © 2026 FarmLink UG Contributors
 
 See [LICENSE](LICENSE) file for full license text.
 
@@ -171,11 +171,11 @@ See [LICENSE](LICENSE) file for full license text.
 ## Contact & Support
 
 For questions, feature requests, or partnership inquiries:
-- **GitHub Issues**: [Report bugs or request features](https://github.com/asiimwe-dev/FarmCom/issues)
+- **GitHub Issues**: [Report bugs or request features](https://github.com/asiimwe-dev/FarmLink-UG/issues)
 - **Email**: [gilbertasiiimwe00@gmail.com](mailto:gilbertasiiimwe00@gmail.com)
 
 - **Documentation**: [ARCHITECTURE.md](ARCHITECTURE.md) | [API Spec](#) (coming soon)
 
 ---
 
-**FarmCom is building the digital infrastructure for sustainable, equitable agriculture in East Africa.** 🌾
+**FarmLink UG is building the digital infrastructure for sustainable, equitable agriculture in East Africa.** 🌾

@@ -1,6 +1,6 @@
-# Contributing to FarmCom
+# Contributing to FarmLink UG
 
-Thank you for your interest in contributing to FarmCom! This guide will help you understand our development process, code standards, and how to submit contributions effectively.
+Thank you for your interest in contributing to FarmLink UG! This guide will help you understand our development process, code standards, and how to submit contributions effectively.
 
 ---
 
@@ -67,11 +67,11 @@ Android Studio or VSCode
 ```bash
 # Fork the repository on GitHub
 # Then clone your fork
-git clone https://github.com/YOUR_USERNAME/FarmCom.git
-cd FarmCom
+git clone https://github.com/YOUR_USERNAME/FarmLink-UG.git
+cd FarmLink UG
 
 # Add upstream remote for syncing
-git remote add upstream https://github.com/asiimwe-dev/FarmCom.git
+git remote add upstream https://github.com/asiimwe-dev/FarmLink-UG.git
 ```
 
 ### Step 2: Verify Setup
@@ -308,28 +308,28 @@ void doSomething() { }
 import 'package:flutter/material.dart';
 import 'package:riverpod/riverpod.dart';
 
-import 'package:farmcom/core/domain/exceptions/app_exception.dart';
-import 'package:farmcom/core/utils/logger.dart';
-import 'package:farmcom/features/auth/data/repositories/auth_repository.dart';
+import 'package:farmlink_ug/core/domain/exceptions/app_exception.dart';
+import 'package:farmlink_ug/core/utils/logger.dart';
+import 'package:farmlink_ug/features/auth/data/repositories/auth_repository.dart';
 
 import '../providers/auth_provider.dart';
 import 'widgets/phone_input_widget.dart';
 
 ❌ Avoid
 
-import 'package:farmcom/features/auth/data/repositories/auth_repository.dart';
+import 'package:farmlink_ug/features/auth/data/repositories/auth_repository.dart';
 import 'package:flutter/material.dart';
 import 'widgets/phone_input_widget.dart';
 import 'package:riverpod/riverpod.dart';
 import '../providers/auth_provider.dart';
-import 'package:farmcom/core/utils/logger.dart';
+import 'package:farmlink_ug/core/utils/logger.dart';
 ```
 
 **Import Order:**
 1. Dart imports (`dart:`)
 2. Flutter imports (`package:flutter/`)
 3. Third-party imports (`package:`)
-4. Project imports (`package:farmcom/`)
+4. Project imports (`package:farmlink_ug/`)
 5. Relative imports (`../`, `./`)
 
 ---
@@ -787,7 +787,7 @@ git push origin feature/your-feature-name --force
 
 1. **Go to GitHub** and click "New Pull Request"
 
-2. **Select base repository:** `asiimwe-dev/FarmCom` (main branch)
+2. **Select base repository:** `asiimwe-dev/FarmLink UG` (main branch)
 
 3. **Select your fork** and feature branch
 
@@ -935,7 +935,7 @@ flutter run --profile
 
 ```bash
 # Add logging in code
-import 'package:farmcom/core/utils/logger.dart';
+import 'package:farmlink_ug/core/utils/logger.dart';
 
 logger.i('Info message');
 logger.w('Warning message');
@@ -958,7 +958,7 @@ adb shell setprop net.change 1
 
 ## Releases & Versioning
 
-FarmCom follows [Semantic Versioning](https://semver.org/):
+FarmLink UG follows [Semantic Versioning](https://semver.org/):
 
 - **MAJOR** — Breaking changes
 - **MINOR** — New features (backward compatible)
@@ -996,4 +996,4 @@ All contributors will be recognized in:
 **Questions?** Create an issue or start a discussion. We're here to help! 🚀
 
 **Last Updated:** April 2026  
-**Maintained By:** FarmCom Development Team
+**Maintained By:** FarmLink UG Development Team

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:farmcom/core/theme/app_colors.dart';
-import 'package:farmcom/core/presentation/widgets/modern_chat_bubble.dart';
-import 'package:farmcom/core/presentation/widgets/modern_chat_input.dart';
+import 'package:farmlink_ug/core/theme/app_colors.dart';
+import 'package:farmlink_ug/core/presentation/widgets/modern_chat_bubble.dart';
+import 'package:farmlink_ug/core/presentation/widgets/modern_chat_input.dart';
 
 class CommunityChatPage extends StatefulWidget {
   final String communityName;

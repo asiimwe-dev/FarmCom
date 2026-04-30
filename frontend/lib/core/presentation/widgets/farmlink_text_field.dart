@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:farmcom/core/theme/app_colors.dart';
-import 'package:farmcom/core/theme/app_typography.dart';
+import 'package:farmlink_ug/core/theme/app_colors.dart';
+import 'package:farmlink_ug/core/theme/app_typography.dart';
 
 /// Professional text input component with validation support
 /// Handles both light and dark modes seamlessly
-class FarmComTextField extends StatefulWidget {
+class FarmLinkTextField extends StatefulWidget {
   final TextEditingController? controller;
   final String? hintText;
   final String? labelText;
@@ -26,7 +26,7 @@ class FarmComTextField extends StatefulWidget {
   final bool showCharacterCount;
   final bool isRequired;
 
-  const FarmComTextField({
+  const FarmLinkTextField({
     super.key,
     this.controller,
     this.hintText,
@@ -51,10 +51,10 @@ class FarmComTextField extends StatefulWidget {
   });
 
   @override
-  State<FarmComTextField> createState() => _FarmComTextFieldState();
+  State<FarmLinkTextField> createState() => _FarmLinkTextFieldState();
 }
 
-class _FarmComTextFieldState extends State<FarmComTextField> {
+class _FarmLinkTextFieldState extends State<FarmLinkTextField> {
   late FocusNode _focusNode;
   bool _isFocused = false;
   late bool _isObscured;

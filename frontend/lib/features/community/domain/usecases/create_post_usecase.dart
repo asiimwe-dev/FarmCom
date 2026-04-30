@@ -1,4 +1,4 @@
-import 'package:farmcom/core/domain/repositories/icommunity_repository.dart';
+import 'package:farmlink_ug/core/domain/repositories/icommunity_repository.dart';
 
 class CreatePostUseCase {
   final ICommunityRepository repository;

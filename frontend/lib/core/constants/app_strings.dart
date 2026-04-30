@@ -1,7 +1,7 @@
 /// App strings - localization ready
 class AppStrings {
   // App
-  static const String appName = 'FarmCom';
+  static const String appName = 'FarmLink UG';
   static const String appSubtitle = 'Connect. Learn. Grow.';
 
   // Auth

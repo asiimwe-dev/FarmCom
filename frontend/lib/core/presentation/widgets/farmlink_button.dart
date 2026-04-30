@@ -1,19 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:farmcom/core/theme/app_colors.dart';
-import 'package:farmcom/core/theme/app_typography.dart';
+import 'package:farmlink_ug/core/theme/app_colors.dart';
+import 'package:farmlink_ug/core/theme/app_typography.dart';
 
-enum FarmComButtonVariant { primary, secondary, tertiary, outline, ghost }
+enum FarmLinkButtonVariant { primary, secondary, tertiary, outline, ghost }
 
-enum FarmComButtonSize { small, medium, large }
+enum FarmLinkButtonSize { small, medium, large }
 
-/// Professional FarmComButton with comprehensive state management
+/// Professional FarmLinkButton with comprehensive state management
 /// Supports multiple variants, sizes, and accessibility features
-class FarmComButton extends StatefulWidget {
+class FarmLinkButton extends StatefulWidget {
   final String label;
   final VoidCallback? onPressed;
-  final FarmComButtonVariant variant;
-  final FarmComButtonSize size;
+  final FarmLinkButtonVariant variant;
+  final FarmLinkButtonSize size;
   final bool isLoading;
   final bool enabled;
   final IconData? icon;
@@ -22,12 +22,12 @@ class FarmComButton extends StatefulWidget {
   final double? height;
   final EdgeInsetsGeometry? padding;
 
-  const FarmComButton({
+  const FarmLinkButton({
     super.key,
     required this.label,
     this.onPressed,
-    this.variant = FarmComButtonVariant.primary,
-    this.size = FarmComButtonSize.medium,
+    this.variant = FarmLinkButtonVariant.primary,
+    this.size = FarmLinkButtonSize.medium,
     this.isLoading = false,
     this.enabled = true,
     this.icon,
@@ -38,10 +38,10 @@ class FarmComButton extends StatefulWidget {
   });
 
   @override
-  State<FarmComButton> createState() => _FarmComButtonState();
+  State<FarmLinkButton> createState() => _FarmLinkButtonState();
 }
 
-class _FarmComButtonState extends State<FarmComButton>
+class _FarmLinkButtonState extends State<FarmLinkButton>
     with SingleTickerProviderStateMixin {
   late AnimationController _pressController;
   bool _isPressed = false;
@@ -63,11 +63,11 @@ class _FarmComButtonState extends State<FarmComButton>
 
   (double, double) _getSizeParameters() {
     switch (widget.size) {
-      case FarmComButtonSize.small:
+      case FarmLinkButtonSize.small:
         return (44, 12);
-      case FarmComButtonSize.medium:
+      case FarmLinkButtonSize.medium:
         return (56, 16);
-      case FarmComButtonSize.large:
+      case FarmLinkButtonSize.large:
         return (64, 20);
     }
   }
@@ -95,19 +95,19 @@ class _FarmComButtonState extends State<FarmComButton>
     double horizontalPadding,
   ) {
     switch (widget.variant) {
-      case FarmComButtonVariant.primary:
+      case FarmLinkButtonVariant.primary:
         return _buildPrimaryButton(horizontalPadding);
 
-      case FarmComButtonVariant.secondary:
+      case FarmLinkButtonVariant.secondary:
         return _buildSecondaryButton(horizontalPadding);
 
-      case FarmComButtonVariant.tertiary:
+      case FarmLinkButtonVariant.tertiary:
         return _buildTertiaryButton(horizontalPadding);
 
-      case FarmComButtonVariant.outline:
+      case FarmLinkButtonVariant.outline:
         return _buildOutlineButton(horizontalPadding);
 
-      case FarmComButtonVariant.ghost:
+      case FarmLinkButtonVariant.ghost:
         return _buildGhostButton(context, isDark, horizontalPadding);
     }
   }
@@ -215,8 +215,8 @@ class _FarmComButtonState extends State<FarmComButton>
         child: CircularProgressIndicator(
           strokeWidth: 2.5,
           valueColor: AlwaysStoppedAnimation(
-            widget.variant == FarmComButtonVariant.outline ||
-                    widget.variant == FarmComButtonVariant.ghost
+            widget.variant == FarmLinkButtonVariant.outline ||
+                    widget.variant == FarmLinkButtonVariant.ghost
                 ? AppColors.primary
                 : Colors.white,
           ),
@@ -250,28 +250,28 @@ class _FarmComButtonState extends State<FarmComButton>
 
   double _getIconSize() {
     switch (widget.size) {
-      case FarmComButtonSize.small:
+      case FarmLinkButtonSize.small:
         return 16;
-      case FarmComButtonSize.medium:
+      case FarmLinkButtonSize.medium:
         return 18;
-      case FarmComButtonSize.large:
+      case FarmLinkButtonSize.large:
         return 20;
     }
   }
 
   TextStyle _getTextStyle() {
     switch (widget.size) {
-      case FarmComButtonSize.small:
+      case FarmLinkButtonSize.small:
         return AppTypography.labelMedium.copyWith(
           fontWeight: FontWeight.w700,
           color: _getTextColor(),
         );
-      case FarmComButtonSize.medium:
+      case FarmLinkButtonSize.medium:
         return AppTypography.labelLarge.copyWith(
           fontWeight: FontWeight.w700,
           color: _getTextColor(),
         );
-      case FarmComButtonSize.large:
+      case FarmLinkButtonSize.large:
         return AppTypography.titleMedium.copyWith(
           fontWeight: FontWeight.w700,
           color: _getTextColor(),
@@ -280,12 +280,12 @@ class _FarmComButtonState extends State<FarmComButton>
   }
 
   Color _getTextColor() {
-    if (widget.variant == FarmComButtonVariant.primary ||
-        widget.variant == FarmComButtonVariant.secondary) {
+    if (widget.variant == FarmLinkButtonVariant.primary ||
+        widget.variant == FarmLinkButtonVariant.secondary) {
       return Colors.white;
-    } else if (widget.variant == FarmComButtonVariant.tertiary) {
+    } else if (widget.variant == FarmLinkButtonVariant.tertiary) {
       return AppColors.primary;
-    } else if (widget.variant == FarmComButtonVariant.outline) {
+    } else if (widget.variant == FarmLinkButtonVariant.outline) {
       return AppColors.primary;
     } else {
       return AppColors.primary;
