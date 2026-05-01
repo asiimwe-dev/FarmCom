@@ -57,14 +57,13 @@ class _CommunityCard extends StatelessWidget {
             ? Border(top: BorderSide(color: color, width: 3))
             : null, // Colored top border in light mode
         onTap: () {
-          Navigator.of(context).push(
-            MaterialPageRoute(
-              builder: (context) => CommunityChatPage(
-                communityName: name,
-                communityId: name.toLowerCase(),
-                members: '1.5k',
-              ),
-            ),
+          context.push(
+            AppRoutes.communityChat,
+            extra: {
+              'name': name,
+              'id': name.toLowerCase(),
+              'members': '1.5k',
+            },
           );
         },
         child: Column(

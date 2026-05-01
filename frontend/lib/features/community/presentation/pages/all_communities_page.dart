@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:farmlink_ug/core/theme/app_colors.dart';
 import 'package:farmlink_ug/core/theme/spacing_constants.dart';
+import 'package:farmlink_ug/core/routing/app_routes.dart';
 import 'package:farmlink_ug/core/presentation/widgets/ui_refinement_kit.dart';
 import 'package:farmlink_ug/core/presentation/widgets/farmlink_card.dart';
 import 'package:farmlink_ug/core/presentation/widgets/farmlink_text_field.dart';
-import 'community_chat_page.dart';
 
 class AllCommunitiesPage extends StatelessWidget {
   const AllCommunitiesPage({super.key});
@@ -63,14 +64,13 @@ class AllCommunitiesPage extends StatelessWidget {
       padding: const EdgeInsets.only(bottom: SpacingConstants.paddingMD),
       child: FarmLinkCard(
         onTap: () {
-          Navigator.of(context).push(
-            MaterialPageRoute(
-              builder: (context) => CommunityChatPage(
-                communityName: name,
-                communityId: name.toLowerCase(),
-                members: members.split(' ')[0],
-              ),
-            ),
+          context.push(
+            AppRoutes.communityChat,
+            extra: {
+              'name': name,
+              'id': name.toLowerCase(),
+              'members': members.split(' ')[0],
+            },
           );
         },
         child: Row(

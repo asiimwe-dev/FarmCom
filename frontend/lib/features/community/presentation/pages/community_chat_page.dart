@@ -3,7 +3,7 @@ import 'package:farmlink_ug/core/theme/app_colors.dart';
 import 'package:farmlink_ug/core/theme/app_typography.dart';
 import 'package:farmlink_ug/core/theme/spacing_constants.dart';
 import 'package:farmlink_ug/core/presentation/widgets/modern_chat_bubble.dart';
-import 'package:farmlink_ug/core/presentation/widgets/modern_chat_input.dart';
+import 'package:farmlink_ug/core/presentation/widgets/floating_chat_input.dart';
 import 'package:farmlink_ug/core/presentation/widgets/offline_indicator.dart';
 
 class CommunityChatPage extends StatefulWidget {
@@ -77,62 +77,84 @@ class _CommunityChatPageState extends State<CommunityChatPage> {
   @override
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
-    return Scaffold(
-      backgroundColor: isDark ? const Color(0xFF121212) : AppColors.grey50,
-      appBar: AppBar(
-        elevation: 0,
-        scrolledUnderElevation: isDark ? 4 : 2,
-        backgroundColor: isDark ? AppColors.darkSurfaceBright : Colors.white,
-        leading: IconButton(
-          onPressed: () => Navigator.of(context).pop(),
-          icon: Icon(Icons.arrow_back_ios_new_rounded, color: isDark ? Colors.white : AppColors.textPrimary, size: 20),
-        ),
-        title: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(widget.communityName, style: AppTypography.titleMedium.copyWith(fontWeight: FontWeight.w800, color: isDark ? Colors.white : AppColors.textPrimary)),
-            Text('${widget.members} members', style: AppTypography.labelSmall.copyWith(color: AppColors.textSecondary)),
+    return WillPopScope(
+      onWillPop: () async {
+        Navigator.of(context).pop();
+        return false;
+      },
+      child: Scaffold(
+        backgroundColor: isDark ? const Color(0xFF121212) : const Color(0xFFFAFAFA),
+        appBar: AppBar(
+          elevation: 0,
+          scrolledUnderElevation: isDark ? 4 : 2,
+          backgroundColor: isDark ? AppColors.darkSurfaceBright : Colors.white,
+          leading: IconButton(
+            onPressed: () => Navigator.of(context).pop(),
+            icon: Icon(Icons.arrow_back_ios_new_rounded, color: isDark ? Colors.white : AppColors.textPrimary, size: 20),
+          ),
+          title: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(widget.communityName, style: AppTypography.titleMedium.copyWith(fontWeight: FontWeight.w800, color: isDark ? Colors.white : AppColors.textPrimary)),
+              Text('${widget.members} members', style: AppTypography.labelSmall.copyWith(color: AppColors.textSecondary)),
+            ],
+          ),
+          actions: [
+            IconButton(onPressed: () {}, icon: const Icon(Icons.search_rounded), color: isDark ? Colors.white : AppColors.textPrimary),
+            IconButton(onPressed: () {}, icon: const Icon(Icons.more_vert_rounded), color: isDark ? Colors.white : AppColors.textPrimary),
+            const SizedBox(width: SpacingConstants.paddingMD),
           ],
         ),
-        actions: [
-          IconButton(onPressed: () {}, icon: const Icon(Icons.search_rounded), color: isDark ? Colors.white : AppColors.textPrimary),
-          IconButton(onPressed: () {}, icon: const Icon(Icons.more_vert_rounded), color: isDark ? Colors.white : AppColors.textPrimary),
-          const SizedBox(width: SpacingConstants.paddingMD),
-        ],
-      ),
-      body: Stack(
-        children: [
-          Column(
-            children: [
-              Expanded(
-                child: ListView.builder(
-                  controller: _scrollController,
-                  padding: const EdgeInsets.all(SpacingConstants.paddingLG),
-                  itemCount: _messages.length,
-                  itemBuilder: (context, index) {
-                    final message = _messages[index];
-                    return ModernChatBubble(
-                      text: message['text'],
-                      isUser: message['isMe'],
-                      senderName: message['user'],
-                      senderRole: message['role'],
-                      timestamp: _parseTime(message['time']),
-                      isExpert: message['role'] == 'Expert',
-                    );
-                  },
+        body: Stack(
+          children: [
+            Column(
+              children: [
+                Expanded(
+                  child: ListView.builder(
+                    controller: _scrollController,
+                    padding: const EdgeInsets.fromLTRB(
+                      SpacingConstants.paddingLG,
+                      SpacingConstants.paddingLG,
+                      SpacingConstants.paddingLG,
+                      120, // Extra space for floating input
+                    ),
+                    itemCount: _messages.length,
+                    itemBuilder: (context, index) {
+                      final message = _messages[index];
+                      return ModernChatBubble(
+                        text: message['text'],
+                        isUser: message['isMe'],
+                        senderName: message['user'],
+                        senderRole: message['role'],
+                        timestamp: _parseTime(message['time']),
+                        isExpert: message['role'] == 'Expert',
+                      );
+                    },
+                  ),
                 ),
-              ),
-              ModernChatInputArea(
+              ],
+            ),
+            // Floating input at bottom
+            Positioned(
+              bottom: 0,
+              left: 0,
+              right: 0,
+              child: FloatingChatInput(
                 controller: _messageController,
                 onSend: _sendMessage,
                 onAttach: () => ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Media attachment coming soon!'))),
                 onMic: () => ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Voice message coming soon!'))),
                 hintText: 'Share with community...',
               ),
-            ],
-          ),
-          Positioned(top: 0, left: 0, right: 0, child: OfflineIndicator()),
-        ],
+            ),
+            Positioned(
+              top: 0,
+              left: 0,
+              right: 0,
+              child: OfflineIndicator(),
+            ),
+          ],
+        ),
       ),
     );
   }

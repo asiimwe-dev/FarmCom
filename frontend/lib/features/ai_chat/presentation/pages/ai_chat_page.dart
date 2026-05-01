@@ -4,7 +4,7 @@ import 'package:farmlink_ug/core/theme/app_colors.dart';
 import 'package:farmlink_ug/core/theme/spacing_constants.dart';
 import 'package:farmlink_ug/core/presentation/widgets/ui_refinement_kit.dart';
 import 'package:farmlink_ug/core/presentation/widgets/modern_chat_bubble.dart';
-import 'package:farmlink_ug/core/presentation/widgets/modern_chat_input.dart';
+import 'package:farmlink_ug/core/presentation/widgets/floating_chat_input.dart';
 import 'package:farmlink_ug/core/presentation/widgets/offline_indicator.dart';
 
 class AIChatPage extends ConsumerStatefulWidget {
@@ -78,47 +78,69 @@ class _AIChatPageState extends ConsumerState<AIChatPage> {
 
     if (lowerMessage.contains('disease') || lowerMessage.contains('sick')) {
       return 'I can help with that. For accurate crop disease identification, please use our AI Quick-Scan feature on the dashboard. It uses specialized computer vision to analyze leaf patterns.\n\nCommon treatments for coffee rust include copper-based fungicides and ensuring proper spacing between plants.';
-    } else if (lowerMessage.contains('price') || lowerMessage.contains('market')) {
-      return 'Market prices are currently stable for Coffee but rising for Beans. You can find detailed buy/sell prices in the Market Pulse section of your dashboard.';
-    } else if (lowerMessage.contains('help')) {
-      return 'I can assist you with:\n• Disease diagnosis tips\n• Market price trends\n• Planting schedules\n• Community recommendations\n\nWhat would you like to explore?';
+    }
+    if (lowerMessage.contains('price') || lowerMessage.contains('market')) {
+      return 'Current market prices:\n• Coffee (kg): 5,500-6,200 UGX\n• Maize (100kg bag): 95,000-110,000 UGX\n• Matooke (bunch): 8,000-12,000 UGX\n\nPrices fluctuate daily. Check Market Pulse for live updates!';
+    }
+    if (lowerMessage.contains('weather') || lowerMessage.contains('rain')) {
+      return 'Based on weather forecasts, expect scattered rains in the next 3-5 days. Perfect timing to prepare your fields. Remember to check soil moisture before irrigation.';
+    }
+    if (lowerMessage.contains('fertilizer') || lowerMessage.contains('nutrient')) {
+      return 'For nutrient deficiency, I recommend:\n• Nitrogen: Apply 2-3 weeks after planting\n• Phosphorus: Essential for root development\n• Potassium: Improves fruit quality\n\nVisit our Field Guide for detailed application methods.';
     }
 
-    return 'That\'s an interesting point. Based on current agricultural best practices in East Africa, I recommend checking our Field Guide for detailed steps on that specific crop management technique.\n\nWould you like me to find a specific guide for you?';
+    return 'I\'m here to help! You can ask me about:\n• Crop diseases & identification\n• Market prices\n• Weather conditions\n• Fertilizer & nutrients\n• Farming tips\n\nWhat would you like to know?';
   }
 
   @override
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
-    
-    return Scaffold(
-      backgroundColor: isDark ? const Color(0xFF121212) : AppColors.grey50,
-      appBar: UIRefinementKit.buildGradientAppBar(
-        context: context,
-        title: 'AI Assistant',
-        showLeading: true,
-        onLeadingPressed: () => Navigator.of(context).pop(),
-      ),
-      body: Stack(
-        children: [
-          Column(
-            children: [
-              Expanded(
-                child: ListView.builder(
-                  controller: _scrollController,
-                  padding: const EdgeInsets.all(SpacingConstants.paddingLG),
-                  itemCount: _messages.length,
-                  itemBuilder: (context, index) {
-                    final message = _messages[index];
-                    return AIChatBubble(
-                      text: message.text,
-                      isUser: message.isUser,
-                      timestamp: message.timestamp,
-                    );
-                  },
+
+    return WillPopScope(
+      onWillPop: () async {
+        Navigator.of(context).pop();
+        return false;
+      },
+      child: Scaffold(
+        backgroundColor: isDark ? const Color(0xFF121212) : const Color(0xFFFAFAFA),
+        appBar: UIRefinementKit.buildGradientAppBar(
+          context: context,
+          title: 'FarmLink AI Assistant',
+          onLeadingPressed: () => Navigator.of(context).pop(),
+        ),
+        body: Stack(
+          children: [
+            Column(
+              children: [
+                // Chat messages area
+                Expanded(
+                  child: ListView.builder(
+                    controller: _scrollController,
+                    padding: const EdgeInsets.fromLTRB(
+                      SpacingConstants.paddingLG,
+                      SpacingConstants.paddingLG,
+                      SpacingConstants.paddingLG,
+                      120, // Extra space for floating input
+                    ),
+                    itemCount: _messages.length,
+                    itemBuilder: (context, index) {
+                      final message = _messages[index];
+                      return AIChatBubble(
+                        text: message.text,
+                        isUser: message.isUser,
+                        timestamp: message.timestamp,
+                      );
+                    },
+                  ),
                 ),
-              ),
-              ModernChatInputArea(
+              ],
+            ),
+            // Floating input at bottom
+            Positioned(
+              bottom: 0,
+              left: 0,
+              right: 0,
+              child: FloatingChatInput(
                 controller: _messageController,
                 onSend: _sendMessage,
                 onMic: () {
@@ -128,37 +150,18 @@ class _AIChatPageState extends ConsumerState<AIChatPage> {
                 },
                 hintText: 'Ask me anything...',
               ),
-            ],
-          ),
-          Positioned(
-            top: 0,
-            left: 0,
-            right: 0,
-            child: OfflineIndicator(),
-          ),
-        ],
+            ),
+            // Offline indicator
+            Positioned(
+              top: 0,
+              left: 0,
+              right: 0,
+              child: OfflineIndicator(),
+            ),
+          ],
+        ),
       ),
     );
-  }
-
-  Widget _buildInputArea(bool isDark) {
-    return SizedBox.shrink();
-  }
-
-  Widget _buildOldChatBubble(bool isDark) {
-    return SizedBox.shrink();
-  }
-}
-
-// Old classes kept for reference (can be deleted)
-class _ChatBubble extends StatelessWidget {
-  final ChatMessage message;
-
-  const _ChatBubble({required this.message});
-
-  @override
-  Widget build(BuildContext context) {
-    return SizedBox.shrink();
   }
 }
 

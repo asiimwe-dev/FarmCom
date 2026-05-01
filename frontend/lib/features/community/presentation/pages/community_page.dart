@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 import 'package:farmlink_ug/core/theme/app_colors.dart';
 import 'package:farmlink_ug/core/theme/spacing_constants.dart';
+import 'package:farmlink_ug/core/routing/app_routes.dart';
 import 'package:farmlink_ug/core/presentation/widgets/ui_refinement_kit.dart';
 import 'package:farmlink_ug/core/presentation/widgets/farmlink_card.dart';
 import 'package:farmlink_ug/core/presentation/widgets/farmlink_text_field.dart';
 import 'package:farmlink_ug/core/presentation/widgets/offline_indicator.dart';
-import 'community_chat_page.dart';
 
 class CommunityPage extends ConsumerWidget {
   const CommunityPage({super.key});
@@ -88,14 +89,13 @@ class CommunityPage extends ConsumerWidget {
                     isDark: isDark,
                     isMember: true,
                     onTap: () {
-                      Navigator.of(context).push(
-                        MaterialPageRoute(
-                          builder: (context) => const CommunityChatPage(
-                            communityName: 'Coffee Farmers Uganda',
-                            communityId: 'coffee_ug',
-                            members: '1.2k',
-                          ),
-                        ),
+                      context.push(
+                        AppRoutes.communityChat,
+                        extra: {
+                          'name': 'Coffee Farmers Uganda',
+                          'id': 'coffee_ug',
+                          'members': '1.2k',
+                        },
                       );
                     },
                   ),
@@ -108,14 +108,13 @@ class CommunityPage extends ConsumerWidget {
                     isDark: isDark,
                     isMember: true,
                     onTap: () {
-                      Navigator.of(context).push(
-                        MaterialPageRoute(
-                          builder: (context) => const CommunityChatPage(
-                            communityName: 'Poultry Network',
-                            communityId: 'poultry_ug',
-                            members: '2.1k',
-                          ),
-                        ),
+                      context.push(
+                        AppRoutes.communityChat,
+                        extra: {
+                          'name': 'Poultry Network',
+                          'id': 'poultry_ug',
+                          'members': '2.1k',
+                        },
                       );
                     },
                   ),
@@ -140,14 +139,13 @@ class CommunityPage extends ConsumerWidget {
                     isDark: isDark,
                     isMember: false,
                     onTap: () {
-                      Navigator.of(context).push(
-                        MaterialPageRoute(
-                          builder: (context) => const CommunityChatPage(
-                            communityName: 'Maize Growers',
-                            communityId: 'maize_ug',
-                            members: '850',
-                          ),
-                        ),
+                      context.push(
+                        AppRoutes.communityChat,
+                        extra: {
+                          'name': 'Maize Growers',
+                          'id': 'maize_ug',
+                          'members': '850',
+                        },
                       );
                     },
                   ),

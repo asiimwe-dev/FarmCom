@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:farmlink_ug/core/utils/time_greeting_helper.dart';
-import 'package:farmlink_ug/core/theme/app_colors.dart';
 import 'package:farmlink_ug/core/theme/app_typography.dart';
 
 /// Dashboard header with personalized time-aware greeting
@@ -23,7 +22,6 @@ class PersonalizedGreetingHeader extends StatelessWidget {
     final (greeting, _) = TimeGreetingHelper.getGreeting();
     final gradient = TimeGreetingHelper.getGreetingGradient();
     final actionSuggestion = TimeGreetingHelper.getActionSuggestion();
-    final isDark = Theme.of(context).brightness == Brightness.dark;
 
     return Container(
       decoration: BoxDecoration(gradient: gradient),

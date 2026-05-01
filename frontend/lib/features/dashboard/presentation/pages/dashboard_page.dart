@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:farmlink_ug/core/infrastructure/connectivity/connectivity_provider.dart';
-import 'package:farmlink_ug/features/ai_chat/presentation/pages/ai_chat_page.dart';
-import 'package:farmlink_ug/features/community/presentation/pages/community_chat_page.dart';
 import 'package:farmlink_ug/core/utils/time_greeting_helper.dart';
 import 'package:farmlink_ug/features/auth/presentation/providers/auth_provider.dart';
 import 'package:farmlink_ug/core/routing/app_routes.dart';
@@ -200,11 +198,7 @@ class DashboardPage extends ConsumerWidget {
       ),
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () {
-          Navigator.of(context).push(
-            MaterialPageRoute(
-              builder: (context) => const AIChatPage(),
-            ),
-          );
+          context.push(AppRoutes.aiChat);
         },
         backgroundColor: AppColors.primary,
         foregroundColor: Colors.white,

@@ -12,6 +12,7 @@ class AppRoutes {
   static const String diagnostics = '/diagnostics';
   static const String profile = '/profile';
   static const String aiChat = '/ai-chat';
+  static const String communityChat = '/community-chat';
 
   // Details screens
   static const String postDetail = '/post/:id';

@@ -7,9 +7,11 @@ import '../../features/auth/presentation/pages/otp_page.dart';
 import '../../features/auth/presentation/providers/auth_provider.dart';
 import '../../features/dashboard/presentation/pages/dashboard_page.dart';
 import '../../features/community/presentation/pages/community_page.dart';
+import '../../features/community/presentation/pages/community_chat_page.dart';
 import '../../features/profile/presentation/pages/user_profile_page.dart';
 import '../../features/field_guide/presentation/pages/field_guide_page.dart';
 import '../../features/diagnostics/presentation/pages/camera_diagnostic_page.dart';
+import '../../features/ai_chat/presentation/pages/ai_chat_page.dart';
 import '../../features/notifications/presentation/pages/notifications_page.dart';
 
 // Router provider
@@ -101,6 +103,39 @@ final goRouterProvider = Provider<GoRouter>((ref) {
       GoRoute(
         path: AppRoutes.notifications,
         builder: (context, state) => const NotificationsPage(),
+      ),
+
+      // AI Chat route (full-screen, no bottom nav)
+      GoRoute(
+        path: AppRoutes.aiChat,
+        pageBuilder: (context, state) => CustomTransitionPage<void>(
+          key: state.pageKey,
+          child: const AIChatPage(),
+          transitionsBuilder: (context, animation, secondaryAnimation, child) {
+            return FadeTransition(opacity: animation, child: child);
+          },
+          transitionDuration: const Duration(milliseconds: 300),
+        ),
+      ),
+
+      // Community Chat route (full-screen, no bottom nav)
+      GoRoute(
+        path: AppRoutes.communityChat,
+        pageBuilder: (context, state) {
+          final extra = state.extra as Map<String, dynamic>?;
+          return CustomTransitionPage<void>(
+            key: state.pageKey,
+            child: CommunityChatPage(
+              communityName: extra?['name'] ?? 'Community',
+              communityId: extra?['id'] ?? '',
+              members: extra?['members'] ?? '0',
+            ),
+            transitionsBuilder: (context, animation, secondaryAnimation, child) {
+              return FadeTransition(opacity: animation, child: child);
+            },
+            transitionDuration: const Duration(milliseconds: 300),
+          );
+        },
       ),
     ],
   );
