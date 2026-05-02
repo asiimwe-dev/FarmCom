@@ -54,11 +54,12 @@ class DashboardPage extends ConsumerWidget {
             title: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                _buildAppLogoSmall(),
+                _buildAppLogoSmall(isDark: isDark),
                 Row(
                   children: [
                     IconButton(
                       onPressed: () => context.go(AppRoutes.notifications),
+                      color: isDark ? Colors.white : AppColors.grey900,
                       icon: Stack(
                         children: [
                           const Icon(Icons.notifications_none_rounded, size: 24),
@@ -212,29 +213,29 @@ class DashboardPage extends ConsumerWidget {
     );
   }
 
-  Widget _buildAppLogoSmall() {
+  Widget _buildAppLogoSmall({bool isDark = false}) {
     return Row(
       mainAxisSize: MainAxisSize.min,
       children: [
         Container(
           padding: const EdgeInsets.all(8),
           decoration: BoxDecoration(
-            color: Colors.white.withValues(alpha: 0.2),
+            color: isDark ? Colors.white.withValues(alpha: 0.2) : AppColors.primary.withValues(alpha: 0.15),
             borderRadius: BorderRadius.circular(10),
           ),
-          child: const Icon(
+          child: Icon(
             Icons.eco_rounded,
-            color: Colors.white,
+            color: isDark ? Colors.white : AppColors.primary,
             size: 20,
           ),
         ),
         const SizedBox(width: 10),
-        const Text(
+        Text(
           'FarmLink UG',
           style: TextStyle(
             fontSize: 22,
             fontWeight: FontWeight.w900,
-            color: Colors.white,
+            color: isDark ? Colors.white : AppColors.grey900,
             letterSpacing: 0.5,
           ),
         ),

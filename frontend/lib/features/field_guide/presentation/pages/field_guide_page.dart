@@ -46,9 +46,9 @@ class FieldGuidePage extends ConsumerWidget {
               ),
               flexibleSpace: FlexibleSpaceBar(
                 title: Text(
-                  'Field Guide',
+                  'Explore',
                   style: TextStyle(
-                    color: isDark ? Colors.white : Colors.white,
+                    color: isDark ? Colors.white : AppColors.grey900,
                     fontSize: 18,
                     fontWeight: FontWeight.w900,
                   ),

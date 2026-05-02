@@ -169,4 +169,27 @@ class AppTypography {
       labelSmall: labelSmall,
     );
   }
+
+  /// Apply font size multiplier to any TextStyle
+  static TextStyle applyMultiplier(TextStyle style, double multiplier) {
+    final currentSize = style.fontSize ?? 14.0;
+    return style.copyWith(fontSize: currentSize * multiplier);
+  }
+
+  /// Helper to get theme text style with multiplier applied
+  static TextStyle getDisplayLarge(double multiplier) => applyMultiplier(displayLarge, multiplier);
+  static TextStyle getDisplayMedium(double multiplier) => applyMultiplier(displayMedium, multiplier);
+  static TextStyle getDisplaySmall(double multiplier) => applyMultiplier(displaySmall, multiplier);
+  static TextStyle getHeadlineLarge(double multiplier) => applyMultiplier(headlineLarge, multiplier);
+  static TextStyle getHeadlineMedium(double multiplier) => applyMultiplier(headlineMedium, multiplier);
+  static TextStyle getHeadlineSmall(double multiplier) => applyMultiplier(headlineSmall, multiplier);
+  static TextStyle getTitleLarge(double multiplier) => applyMultiplier(titleLarge, multiplier);
+  static TextStyle getTitleMedium(double multiplier) => applyMultiplier(titleMedium, multiplier);
+  static TextStyle getTitleSmall(double multiplier) => applyMultiplier(titleSmall, multiplier);
+  static TextStyle getBodyLarge(double multiplier) => applyMultiplier(bodyLarge, multiplier);
+  static TextStyle getBodyMedium(double multiplier) => applyMultiplier(bodyMedium, multiplier);
+  static TextStyle getBodySmall(double multiplier) => applyMultiplier(bodySmall, multiplier);
+  static TextStyle getLabelLarge(double multiplier) => applyMultiplier(labelLarge, multiplier);
+  static TextStyle getLabelMedium(double multiplier) => applyMultiplier(labelMedium, multiplier);
+  static TextStyle getLabelSmall(double multiplier) => applyMultiplier(labelSmall, multiplier);
 }

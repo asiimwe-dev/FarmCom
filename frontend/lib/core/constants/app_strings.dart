@@ -20,7 +20,7 @@ class AppStrings {
   // Navigation
   static const String home = 'Home';
   static const String community = 'Community';
-  static const String fieldGuide = 'Field Guide';
+  static const String fieldGuide = 'Explore';
   static const String diagnostics = 'AI Camera';
   static const String profile = 'Profile';
 

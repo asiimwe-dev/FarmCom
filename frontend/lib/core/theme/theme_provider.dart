@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:farmlink_ug/core/services/theme_settings_service.dart';
 
 /// Theme state with font size and mode configuration
 class ThemeState {
@@ -24,15 +25,24 @@ class ThemeState {
 
 /// Theme notifier for state management and persistence
 class ThemeNotifier extends StateNotifier<ThemeState> {
-  ThemeNotifier()
+  final ThemeSettingsService settingsService;
+
+  ThemeNotifier(this.settingsService)
       : super(ThemeState(
           themeMode: ThemeMode.system,
           fontSizeMultiplier: 1.0,
         ));
 
+  /// Initialize by loading saved theme from storage
+  Future<void> initialize() async {
+    final savedTheme = await settingsService.loadThemeMode();
+    state = state.copyWith(themeMode: savedTheme);
+  }
+
   /// Set the theme mode (light, dark, or system)
-  void setThemeMode(ThemeMode mode) {
+  Future<void> setThemeMode(ThemeMode mode) async {
     state = state.copyWith(themeMode: mode);
+    await settingsService.saveThemeMode(mode);
   }
 
   /// Set the font size multiplier for accessibility
@@ -43,23 +53,28 @@ class ThemeNotifier extends StateNotifier<ThemeState> {
   }
 
   /// Reset to default theme settings
-  void resetToDefaults() {
+  Future<void> resetToDefaults() async {
     state = ThemeState(
       themeMode: ThemeMode.system,
       fontSizeMultiplier: 1.0,
     );
+    await settingsService.saveThemeMode(ThemeMode.system);
   }
 
   /// Toggle between light and dark mode
-  void toggleThemeMode() {
+  Future<void> toggleThemeMode() async {
     final newMode = state.themeMode == ThemeMode.dark
         ? ThemeMode.light
         : ThemeMode.dark;
-    setThemeMode(newMode);
+    await setThemeMode(newMode);
   }
 }
 
-/// Riverpod provider for theme state management
+/// Riverpod provider for theme state management with persistence
 final themeProvider = StateNotifierProvider<ThemeNotifier, ThemeState>((ref) {
-  return ThemeNotifier();
+  final settingsService = ref.watch(themeSettingsServiceProvider);
+  final notifier = ThemeNotifier(settingsService);
+  // Initialize async - this will load saved theme
+  notifier.initialize();
+  return notifier;
 });

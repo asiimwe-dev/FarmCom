@@ -39,7 +39,7 @@ class CommunityPage extends ConsumerWidget {
               title: Text(
                 'Community Network',
                 style: TextStyle(
-                  color: isDark ? Colors.white : Colors.white,
+                  color: isDark ? Colors.white : AppColors.grey900,
                   fontSize: 18,
                   fontWeight: FontWeight.w900,
                 ),

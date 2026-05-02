@@ -156,7 +156,7 @@ class MainShell extends ConsumerWidget {
   }
 
   String _getLabel(int index) {
-    const labels = ['Home', 'Community', 'Diagnose', 'Learn', 'Profile'];
+    const labels = ['Home', 'Community', 'Diagnose', 'Explore', 'Profile'];
     return labels[index];
   }
 }
